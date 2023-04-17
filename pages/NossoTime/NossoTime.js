@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import { Hallyson, Lourdes, TiagoSanti } from '@/data/text/members'
+import { Hallyson, Lourdes, Rodrigo, TiagoSanti } from '@/data/text/members'
 
-const members = [Hallyson, Lourdes, TiagoSanti, TiagoSanti]
+const members = [Hallyson, Rodrigo, Lourdes, TiagoSanti]
 
 const NossoTime = () => {
     return (
