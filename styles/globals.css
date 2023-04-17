@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.root,
+#root,
+#docs-root {
+    --primary-color: #043475;
+    --p-hover-color: #074a8a;
+    --p-bold-color: #002747;
+    --p-light-color: #003475;
+    --secondary-color: #22AFE0;
+    --thirdy-color: #48B091;
+}
