@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Header from '@/components/Header'
+import NossoTime from '@/pages/NossoTime/NossoTime';
 
 export default function Home() {
 
@@ -13,6 +14,7 @@ export default function Home() {
         </Head>
         <main>
           <Header />
+          <NossoTime />
         </main>
       </>
   )
