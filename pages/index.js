@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from '@/components/Header'
 import NossoTime from '@/pages/NossoTime/NossoTime';
 
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
-
+          <Header />
           <NossoTime />
         </main>
       </>
