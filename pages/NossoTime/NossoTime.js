@@ -16,28 +16,13 @@ const NossoTime = () => {
             {members?.map((member, index) => {
                 return (
                     <div className={'flex justify-center pt-8 gap-6 flex-wrap mt-14'} key={index}>
-                        {index % 2 === 0?
-                            (
-                                <>
-                                <Image src={member.image} alt={`Foto do ${member.name}`} width={300} height={300} />
-                                <div className={'flex flex-col gap-4 max-w-2xl p-4'}>
-                                    <span className={'text-thirdy font-bold text-xl'}>{member.name}</span>
-                                    <span className={'font-semibold text-p-light'}>{member.graduation}</span>
-                                    <span className={'break-words text-p-light'}>{member.description}</span>
-                                </div>
-                                </>
-                            ) : (
-                                <>
-                                    <div className={'flex flex-col gap-4 max-w-2xl p-4 text-end'}>
-                                        <span className={'text-thirdy font-bold text-xl'}>{member.name}</span>
-                                        <span className={'font-semibold text-p-light'}>{member.graduation}</span>
-                                        <span className={'break-words text-p-light'}>{member.description}</span>
-                                    </div>
-                                    <Image src={member.image} alt={`Foto do ${member.name}`} width={300} height={300} />
-                                </>
-                            )
-                        }
-
+                        {index % 2 === 0 && <Image src={member.image} alt={`Foto do ${member.name}`} width={300} height={300} />}
+                        <div className={'flex flex-col gap-4 max-w-2xl p-4'}>
+                            <span className={'text-thirdy font-bold text-xl'}>{member.name}</span>
+                            <span className={'font-semibold text-p-light'}>{member.graduation}</span>
+                            <span className={'break-words text-p-light'}>{member.description}</span>
+                        </div>
+                        {index % 2 !== 0 && <Image src={member.image} alt={`Foto do ${member.name}`} width={300} height={300} />}
                     </div>
                 )
             })}
