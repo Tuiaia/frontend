@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Header from '@/components/Header'
-import NossoTime from '@/pages/NossoTime/NossoTime';
+import NossoTime from '@/pages/NossoProjeto/NossoTime';
+import NossoMentor from '@/pages/NossoProjeto/NossoMentor';
+import Agradecimentos from '@/pages/NossoProjeto/Agradecimentos';
 
 export default function Home() {
 
@@ -15,6 +17,8 @@ export default function Home() {
         <main>
           <Header />
           <NossoTime />
+          <NossoMentor />
+          <Agradecimentos />
         </main>
       </>
   )
