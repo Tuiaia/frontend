@@ -17,6 +17,7 @@ module.exports = {
         'p-hover': '#074a8a',
         'p-bold': '#002747',
         'p-light': '#003475',
+        'p-lighter': '#1769bb',
         'secondary': '#22AFE0',
         'thirdy': '#48B091'
       }

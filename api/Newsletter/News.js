@@ -1,14 +1,13 @@
 const url = 'http://tuiaiabackend.g5csendagrgfgrek.brazilsouth.azurecontainer.io:15400/newsletter'
 
-export default async function classifyNotice(notice) {
+export default async function getNews() {
     try{
         const response = await fetch(url, {
-            body: JSON.stringify({"notice": notice}),
+            method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: 'POST'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
         })
         return await response.json()
     } catch (error) {

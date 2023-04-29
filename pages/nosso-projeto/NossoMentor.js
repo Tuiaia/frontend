@@ -19,4 +19,4 @@ const NossoMentor = () => {
     )
 }
 
-export default NossoMentor
+export default NossoMentor;
