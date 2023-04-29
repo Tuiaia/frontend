@@ -19,7 +19,7 @@ const NossoTime = () => {
                     <div className={'flex justify-center pt-8 gap-6 flex-wrap mt-14'} key={index}>
                         {index % 2 === 0 && <Image src={member.image} alt={`Foto do ${member.name}`} width={300} height={300} />}
                             <div className={'flex flex-col gap-4 max-w-2xl p-4'}>
-                                <span className={'text-thirdy font-bold text-4xl'}>{member.name}</span>
+                                <span className={'text-third font-bold text-4xl'}>{member.name}</span>
                                 <span className={'font-semibold text-3xl text-secondary'}>{member.graduation}</span>
                                 <span className={'break-words text-2xl text-primary text-justify'}>{member.description}</span>
                             </div>

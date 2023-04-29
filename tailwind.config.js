@@ -19,7 +19,7 @@ module.exports = {
         'p-light': '#003475',
         'p-lighter': '#1769bb',
         'secondary': '#22AFE0',
-        'thirdy': '#48B091'
+        'third': '#48B091'
       }
     },
   },
