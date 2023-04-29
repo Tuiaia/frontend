@@ -25,8 +25,8 @@ const ClassificadorNoticias = () => {
                         onBlur={(e) => e.target.parentElement.classList.remove('border-p-lighter')}
                     />
                 </div>
-                <Image src={'folhas_esquerda.svg'} alt={''} width={300} height={300} className={'absolute left-0 top-8'} ></Image>
-                <Image src={'folhas_direita.svg'} alt={''} width={300} height={300}></Image>
+                <Image src={'folhas_direita.svg'} alt={''} width={300} height={300} className={'absolute right-0 top-8'} ></Image>
+                <Image src={'folhas_esquerda.svg'} alt={''} width={300} height={300} className={'absolute left-0 top-8'}></Image>
             </div>
             <div className={'w-full text-end text-2xl mt-2 mr-2'}>Caracteres: {text.length}</div>
             <div className={'w-full flex justify-center'}>
