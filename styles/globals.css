@@ -32,6 +32,9 @@
     --p-lighter-color: #1769bb;
     --secondary-color: #22AFE0;
     --thirdy-color: #48B091;
+    --classify-negative-color: #EB615C;
+    --classify-neutral-color: #E5CB2A;
+    --classify-positive-color: #48B091;
 }
 body{
     font-family: 'aristotelicapro_cndtextXLt', serif, sans-serif;

@@ -19,7 +19,10 @@ module.exports = {
         'p-light': '#003475',
         'p-lighter': '#1769bb',
         'secondary': '#22AFE0',
-        'thirdy': '#48B091'
+        'thirdy': '#48B091',
+        'classify-negative': '#EB615C',
+        'classify-neutral': '#E5CB2A',
+        'classify-positive': '#48B091',
       }
     },
   },
