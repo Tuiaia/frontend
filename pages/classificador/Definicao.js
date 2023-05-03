@@ -2,15 +2,17 @@ import { DefinicaoText } from '@/data/text/classificador';
 
 const Definicao = () => {
     return (
-        <section className={'w-full bg-[url("../public/nosso_time.jpg")] bg-no-repeat bg-cover pb-72 flex justify-end'}>
-            <div className={'flex justify-end'}>
-                <span className={'text-secondary text-6xl font-bold mt-14'}>{DefinicaoText.title}</span>
-                <span className={'text-p-bold text-center text-4xl mb-8'}>
-                    {DefinicaoText.paragraph_one}<br/>
-                    {DefinicaoText.paragraph_two}<br/>
-                    {DefinicaoText.paragraph_three}<br/>
-                    {DefinicaoText.paragraph_four}
-                </span>
+        <section className={'w-full bg-[url("../public/cachoeira-definicao-classificador.png")] bg-no-repeat bg-cover pb-601 flex justify-end'}>
+            <div className={'flex justify-end items-center p-20'}>
+                <div className={'flex-1 max-w-5xl bg-p-bold h-full p-10 rounded-3xl pb-31'}>
+                    <div className={'text-secondary text-5xl font-bold mb-10'}>{DefinicaoText.title}</div>
+                    <div className={'text-white text-2xl text-justify'}>
+                        {DefinicaoText.paragraph_one}<br/><br/>
+                        {DefinicaoText.paragraph_two}<br/><br/>
+                        {DefinicaoText.paragraph_three}<br/><br/>
+                        {DefinicaoText.paragraph_four}
+                    </div>
+                </div>
             </div>
         </section>
     )
