@@ -11,7 +11,7 @@ export default function Home() {
           <title>Tuiaia</title>
           <meta name="description" content="A melhor IA para classificar sentimento de notícias" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/logo.ico" />
         </Head>
         <main>
           <Header />

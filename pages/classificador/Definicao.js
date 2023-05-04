@@ -2,7 +2,7 @@ import { DefinicaoText } from '@/data/text/classificador';
 
 const Definicao = () => {
     return (
-        <section className={'w-full bg-[url("../public/cachoeira-definicao-classificador.png")] bg-no-repeat bg-cover pb-601 flex justify-end'}>
+        <section className={'w-full bg-[url("../public/cachoeira-definicao-classificador.svg")] bg-no-repeat bg-cover pb-601 flex justify-end'}>
             <div className={'flex justify-end items-center p-20'}>
                 <div className={'flex-1 max-w-5xl bg-p-bold h-full p-10 rounded-3xl pb-31'}>
                     <div className={'text-secondary text-5xl font-bold mb-10'}>{DefinicaoText.title}</div>

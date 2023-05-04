@@ -8,7 +8,11 @@ const itensHeader = [
         route: '/'
     },
     {
-        title: 'Notícias',
+        title: 'Feed',
+        route: '/'
+    },
+    {
+        title: 'Dashboard',
         route: '/'
     },
     {
