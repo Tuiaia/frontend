@@ -23,6 +23,7 @@ module.exports = {
         'classify-negative': '#EB615C',
         'classify-neutral': '#E5CB2A',
         'classify-positive': '#48B091',
+        'black': '#000000',
       }
     },
   },

@@ -35,7 +35,7 @@
     --white: #FFFF;
     --thirdy-color: #48B091;
     --classify-negative-color: #EB615C;
-    --classify-neutral-color: #a7900e;
+    --classify-neutral-color: #cbaf18;
     --classify-positive-color: #48B091;
 }
 
@@ -46,6 +46,39 @@
     padding: 2rem;
     margin-left: -20px;
 }
+
+.positive-icon {
+    margin-top: 18px;
+    filter: invert(69%) sepia(4%) saturate(4783%) hue-rotate(111deg) brightness(89%) contrast(79%);
+}
+
+.neutral-icon {
+    margin-top: 18px;
+    filter: invert(83%) sepia(39%) saturate(3784%) hue-rotate(6deg) brightness(94%) contrast(81%);
+}
+
+.negative-icon {
+    margin-top: 18px;
+    filter: invert(53%) sepia(48%) saturate(4512%) hue-rotate(328deg) brightness(106%) contrast(85%);
+}
+
+.text-classify-positive{
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.text-classify-neutral{
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #cbaf18;
+}
+
+.text-classify-negative{
+    margin-top: 25px;
+    margin-bottom: 15px;
+
+}
+
 
 body{
     font-family: 'aristotelicapro_cndtextXLt', serif, sans-serif;

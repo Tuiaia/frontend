@@ -61,23 +61,23 @@ const ClassificadorNoticias = () => {
             </div>
             {response && (
                 <>
-                    <div className={`w-full mt-16 ${bgColorClassify[mockResponse.classificacao]} p-10 rounded-3xl text-white`}>
-                        <div className={'text-4xl font-bold text-center mb-6'}>Análise</div>
+                    <div className={`w-full mt-16 ${bgColorClassify[mockResponse.classificacao]} p-10 rounded-3xl font-bold text-black`}>
+                        <div className={'text-5xl font-bold text-center mb-6'}>Análise</div>
                         <div className={'text-3xl'}>
                             <span>Essa notícia é classificada como: <span className={'capitalize text-black font-bold'}>{mockResponse.classificacao}</span></span>
                             <Image className={'inline-block ml-2'} src={'negative_icon.svg'} alt={''} width={40} height={40}/>
 
                         </div>
                     </div>
-                    <div className={`w-full mt-16 ${bgColorClassify['positiva']} p-10 rounded-3xl text-white`}>
-                        <div className={'text-4xl font-bold text-center mb-6'}>Análise</div>
+                    <div className={`w-full mt-16 ${bgColorClassify['positiva']} p-10 rounded-3xl font-bold text-black`}>
+                        <div className={'text-5xl font-bold text-center mb-6'}>Análise</div>
                         <div className={'text-3xl'}>
                             <span>Essa notícia é classificada como: <span className={'capitalize text-black font-bold'}>{'positiva'}</span></span>
                             <Image className={'inline-block ml-2'} src={'positive_icon.svg'} alt={''} width={40} height={40}/>
                         </div>
                     </div>
-                    <div className={`w-full mt-16 ${bgColorClassify['neutra']} p-10 rounded-3xl text-white`}>
-                        <div className={'text-4xl font-bold text-center mb-6'}>Análise</div>
+                    <div className={`w-full mt-16 ${bgColorClassify['neutra']} p-10 rounded-3xl font-bold text-black`}>
+                        <div className={'text-5xl font-bold text-center mb-6'}>Análise</div>
                         <div className={'text-3xl'}>
                             <span>Essa notícia é classificada como: <span className={'capitalize text-black font-bold'}>{'neutra'}</span></span>
                             <Image className={'inline-block ml-2'} src={'neutral_icon.svg'} alt={''} width={40} height={40}/>
