@@ -38,6 +38,15 @@
     --classify-neutral-color: #a7900e;
     --classify-positive-color: #48B091;
 }
+
+.multilingual-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    margin-left: -20px;
+}
+
 body{
     font-family: 'aristotelicapro_cndtextXLt', serif, sans-serif;
 }

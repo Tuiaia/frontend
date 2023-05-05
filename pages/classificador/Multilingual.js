@@ -1,21 +1,33 @@
 import { MultilingualText } from '@/data/text/classificador';
+import Image from "next/image";
 
 const Multilingual = () => {
     return (
-        <section className={'w-full bg-[url("../public/multilingual-classificador.svg")] bg-no-repeat bg-cover flex justify-center items-center'}>
-            <div className={'flex p-20'}>
-                <div className={'w-full bg-[url("../public/arara-multilingual-classificador.svg")] bg-no-repeat'}></div>
-                <div className={'flex-1 max-w-5xl h-full p-10 rounded-3xl pb-31'}>
-                    <div className={'text-secondary text-5xl font-bold mb-10'}>{MultilingualText.title}</div>
-                    <div className={'text-white text-2xl text-justify'}>
-                        {MultilingualText.paragraph_one}<br/><br/>
-                        {MultilingualText.paragraph_two}
-                    </div>
-                </div>
-                <div className={'w-full bg-[url("../public/bandeiras-multilingual-classificador.svg")] bg-no-repeat justify-end'}></div>
+        <section
+            className="section-multilingual w-full flex items-center relative"
+            style={{
+                backgroundImage: 'url("/multilingual-classificador.svg")',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                height: '850px',
+            }}
+        >
+            <div className="w-2/5 ml-[-12%]">
+                <Image src="arara-multilingual-classificador.svg" alt="Araras multilingual" width={850} height={600} />
             </div>
+            <div className="w-2/5 text-center">
+                <div className="text-secondary text-6xl font-bold mb-10">{MultilingualText.title}</div>
+                <div className="text-white text-3xl text-justify">
+                    {MultilingualText.paragraph_one}<br /><br />
+                    {MultilingualText.paragraph_two}
+                </div>
+            </div>
+            <div className="w-2/5 absolute right-[-5%]">
+                <Image src="/bandeiras-multilingual-classificador.svg" alt="Bandeiras multilingual" width={850} height={600} />
+            </div>
+
         </section>
     )
 }
 
-export default Multilingual
+export default Multilingual;
