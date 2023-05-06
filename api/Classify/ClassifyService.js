@@ -1,4 +1,4 @@
-const url = 'http://127.0.0.1:8000/'
+const url = 'http://tuiaiabackend.g5csendagrgfgrek.brazilsouth.azurecontainer.io:15400/newsletter'
 
 export default async function classifyNotice(notice) {
     try{

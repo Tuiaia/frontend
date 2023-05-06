@@ -5,19 +5,19 @@ import Link from 'next/link'
 const itensHeader = [
     {
         title: 'Classificador',
-        route: '/Classificador'
+        route: '/classificador'
     },
     {
         title: 'Feed',
-        route: '/Feed'
+        route: '/feed'
     },
     {
         title: 'Dashboard',
-        route: '/Dashboard'
+        route: '/dashboard'
     },
     {
         title: 'Nosso projeto',
-        route: '/NossoProjeto'
+        route: '/nosso-projeto'
     },
 ]
 

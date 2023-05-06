@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'aristotelicapro_cndtextXLt';
+    src: url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelicapro_cndtext_extralight-webfont.woff2') format('woff2'),
+    url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelicapro_cndtext_extralight-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'aristotelica_pro_textXLt';
+    src: url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_text_extralight-webfont.woff2') format('woff2'),
+    url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_text_extralight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'aristotelica_pro_displayXLt';
+    src: url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_display_extralight-webfont.woff2') format('woff2'),
+    url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_display_extralight-webfont.woff') format('woff');
+}
+
 .root,
 #root,
 #docs-root {
@@ -9,6 +29,61 @@
     --p-hover-color: #074a8a;
     --p-bold-color: #002747;
     --p-light-color: #003475;
+    --p-lighter-color: #1769bb;
     --secondary-color: #22AFE0;
+    --third-color: #48B091;
+    --white: #FFFF;
     --thirdy-color: #48B091;
+    --classify-negative-color: #EB615C;
+    --classify-neutral-color: #cbaf18;
+    --classify-positive-color: #48B091;
+}
+
+.multilingual-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    margin-left: -20px;
+}
+
+.positive-icon {
+    margin-top: 18px;
+    filter: invert(69%) sepia(4%) saturate(4783%) hue-rotate(111deg) brightness(89%) contrast(79%);
+}
+
+.neutral-icon {
+    margin-top: 18px;
+    filter: invert(83%) sepia(39%) saturate(3784%) hue-rotate(6deg) brightness(94%) contrast(81%);
+}
+
+.negative-icon {
+    margin-top: 18px;
+    filter: invert(53%) sepia(48%) saturate(4512%) hue-rotate(328deg) brightness(106%) contrast(85%);
+}
+
+.text-classify-positive{
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.text-classify-neutral{
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #cbaf18;
+}
+
+.text-classify-negative{
+    margin-top: 25px;
+    margin-bottom: 15px;
+
+}
+
+.result-classify{
+    margin-left: 15px;
+}
+
+
+body{
+    font-family: 'aristotelicapro_cndtextXLt', serif, sans-serif;
 }
