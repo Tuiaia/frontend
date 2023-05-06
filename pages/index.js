@@ -1,7 +1,7 @@
 import Header from '@/components/Header'
-import NossoTime from '@/pages/NossoProjeto/NossoTime';
-import NossoMentor from '@/pages/NossoProjeto/NossoMentor';
-import Agradecimentos from '@/pages/NossoProjeto/Agradecimentos';
+import NossoTime from '@/pages/nosso-projeto/NossoTime';
+import NossoMentor from '@/pages/nosso-projeto/NossoMentor';
+import Agradecimentos from '@/pages/nosso-projeto/Agradecimentos';
 
 export default function Home() {
 
@@ -14,7 +14,6 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Header>
         <main>
-          <Header/>
           <NossoTime />
           <NossoMentor />
           <Agradecimentos />
