@@ -17,7 +17,7 @@ const PolaridadeEmocional = () => {
                                 <div className={'text-3xl'}>
                                     <Image className={'inline-block ml-2 positive-icon'} src={'/positive_icon.svg'} alt={''} width={300} height={300}/>
                                 </div>
-                                <div className={'text-classify-positive text-5xl'}>
+                                <div className={'text-third text-5xl'}>
                                     {PolaridadeEmocionalText.positive_title}<br/>
                                 </div>
                                 <div>
