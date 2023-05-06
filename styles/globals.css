@@ -83,6 +83,26 @@
     margin-left: 15px;
 }
 
+.feed-icons{
+    margin-top: -80px;
+}
+
+.feed-title{
+    margin-bottom: 20px;
+}
+
+.arara-azul-feed{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.arara-vermelha-feed{
+    position: absolute;
+    top: 20px;
+    right: 0px;
+}
+
 
 body{
     font-family: 'aristotelicapro_cndtextXLt', serif, sans-serif;
