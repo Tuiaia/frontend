@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
-import FeedDeNoticias from '@/pages/feed/FeedDeNoticias';
+import Introducao from '@/pages/feed/Introducao';
+import Noticias from '@/pages/feed/Noticias';
 
 export default function Feed() {
     return (
@@ -11,7 +12,8 @@ export default function Feed() {
                 <link rel="icon" href="/favicon.ico" />
             </Header>
             <main>
-                <FeedDeNoticias />
+                <Introducao />
+                <Noticias />
             </main>
         </>
     )
