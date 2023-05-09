@@ -1,26 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@font-face {
-    font-family: 'aristotelicapro_cndtextXLt';
-    src: url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelicapro_cndtext_extralight-webfont.woff2') format('woff2'),
-    url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelicapro_cndtext_extralight-webfont.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'aristotelica_pro_textXLt';
-    src: url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_text_extralight-webfont.woff2') format('woff2'),
-    url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_text_extralight-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'aristotelica_pro_displayXLt';
-    src: url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_display_extralight-webfont.woff2') format('woff2'),
-    url('../public/zetafonts-aristotelica-pro/zetafonts_-_aristotelica_pro_display_extralight-webfont.woff') format('woff');
-}
 
 .root,
 #root,
@@ -38,6 +21,11 @@
     --classify-neutral-color: #cbaf18;
     --classify-positive-color: #48B091;
 }
+
+html {
+    font-family: 'Nunito', sans-serif;
+}
+
 
 .multilingual-section {
     display: flex;
@@ -101,9 +89,4 @@
     position: absolute;
     top: 20px;
     right: 0px;
-}
-
-
-body{
-    font-family: 'aristotelicapro_cndtextXLt', serif, sans-serif;
 }
