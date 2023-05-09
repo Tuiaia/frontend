@@ -39,14 +39,6 @@
     --classify-positive-color: #48B091;
 }
 
-.multilingual-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem;
-    margin-left: -20px;
-}
-
 .positive-icon {
     margin-top: 18px;
     filter: invert(69%) sepia(4%) saturate(4783%) hue-rotate(111deg) brightness(89%) contrast(79%);
@@ -54,7 +46,7 @@
 
 .neutral-icon {
     margin-top: 18px;
-    filter: invert(83%) sepia(39%) saturate(3784%) hue-rotate(6deg) brightness(94%) contrast(81%);
+    filter: invert(71%) sepia(5%) saturate(29%) hue-rotate(38deg) brightness(97%) contrast(77%);
 }
 
 .negative-icon {
@@ -70,7 +62,7 @@
 .text-classify-neutral{
     margin-top: 25px;
     margin-bottom: 15px;
-    color: #cbaf18;
+    color: #A6A6A6;
 }
 
 .text-classify-negative{
