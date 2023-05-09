@@ -43,11 +43,6 @@ const Header = () => {
                         })
                     }
                     <li>
-                        <a href={'https://www.b3.com.br/pt_br/'} target={'_blank'}>
-                            <Image src={'/b3.png'} alt={'B3'} width={100} height={160} />
-                        </a>
-                    </li>
-                    <li>
                         <a href={'https://pantanal.dev'} target={'_blank'}>
                             <Image src={'/pantanal.png'} alt={'pantanal dev'} width={100} height={160} />
                         </a>
