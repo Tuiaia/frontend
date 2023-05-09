@@ -1,16 +1,15 @@
-const url = 'http://tuiaiabackend.g5csendagrgfgrek.brazilsouth.azurecontainer.io:15400/newsletter'
+const url = 'https://e5f7-2804-14c-7582-6577-9098-daf-d68a-d48a.ngrok-free.app/'
 
-export default async function classifyNotice(notice) {
+export default async function classifyNews(news) {
     try{
-        const response = await fetch(url, {
-            body: JSON.stringify({"notice": notice}),
+        const response = await fetch(`${url}`, {
+            method: 'POST',
             headers: {
-                'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            method: 'POST'
+            body: JSON.stringify({news: news})
         })
-        return await response.json()
+        return await response.json();
     } catch (error) {
         alert('Ocorreu um erro ao classificar a notícia')
         console.log(error)

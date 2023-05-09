@@ -16,7 +16,6 @@
     --secondary-color: #22AFE0;
     --third-color: #48B091;
     --white: #FFFF;
-    --thirdy-color: #48B091;
     --classify-negative-color: #EB615C;
     --classify-neutral-color: #cbaf18;
     --classify-positive-color: #48B091;
@@ -42,7 +41,7 @@ html {
 
 .neutral-icon {
     margin-top: 18px;
-    filter: invert(83%) sepia(39%) saturate(3784%) hue-rotate(6deg) brightness(94%) contrast(81%);
+    filter: invert(71%) sepia(5%) saturate(29%) hue-rotate(38deg) brightness(97%) contrast(77%);
 }
 
 .negative-icon {
@@ -58,7 +57,7 @@ html {
 .text-classify-neutral{
     margin-top: 25px;
     margin-bottom: 15px;
-    color: #cbaf18;
+    color: #A6A6A6;
 }
 
 .text-classify-negative{
