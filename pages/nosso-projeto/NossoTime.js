@@ -6,14 +6,17 @@ const members = [Hallyson, Rodrigo, Lourdes, TiagoSanti]
 
 const NossoTime = () => {
     return (
-        <section className={'w-full bg-[url("../public/nosso_time.jpg")] bg-no-repeat bg-cover pb-72'} >
-            <div className={'flex flex-col justify-center items-center pt-16'}>
+        <section className={'relative w-full pb-72 overflow-hidden'} >
+            <Image className={'absolute -top-0 -left-20 -z-10'} src={'geometrico_cima.svg'} alt={''} width={600} height={600} />
+            <Image className={'absolute -top-0 -right-20 -z-10'} src={'araras_nosso_time.svg'} alt={''} width={400} height={400} />
+            <div className={'flex flex-col justify-center items-center pt-16 max-w-2xl m-auto'}>
                 <span className={'text-6xl font-bold text-secondary mb-12'}>{NossoTimeText.title}</span>
                 <span className={'text-p-bold text-center text-4xl mb-8'}>
                     {NossoTimeText.subtitle_first}<br/>
                     {NossoTimeText.subtitle_second}
                 </span>
             </div>
+            <Image className={'absolute top-1/3 right-0 -z-10'} src={'tucano.svg'} alt={''} width={300} height={300} />
             {members?.map((member, index) => {
                 return (
                     <div className={'flex justify-center pt-8 gap-6 flex-wrap mt-14'} key={index}>
@@ -27,6 +30,8 @@ const NossoTime = () => {
                     </div>
                 )
             })}
+            <Image className={'absolute -bottom-32 -left-14 -z-10'} src={'jacare.svg'} alt={''} width={500} height={500} />
+            <Image className={'absolute -bottom-32 -right-40 -z-10'} src={'geometrico_baixo.svg'} alt={''} width={800} height={800} />
         </section>
     )
 }
