@@ -9,9 +9,9 @@ const NossoTime = () => {
         <section className={'relative w-full pb-72 overflow-hidden'} >
             <Image className={'absolute -top-0 -left-20 -z-10'} src={'geometrico_cima.svg'} alt={''} width={600} height={600} />
             <Image className={'absolute -top-0 -right-20 -z-10'} src={'araras_nosso_time.svg'} alt={''} width={400} height={400} />
-            <div className={'flex flex-col justify-center items-center pt-16 max-w-2xl m-auto'}>
+            <div className={'flex flex-col justify-center items-center pt-16 max-w-3xl m-auto'}>
                 <span className={'text-6xl font-bold text-secondary mb-12'}>{NossoTimeText.title}</span>
-                <span className={'text-p-bold text-center text-4xl mb-8'}>
+                <span className={'text-p-bold text-center text-4xl'}>
                     {NossoTimeText.subtitle_first}<br/>
                     {NossoTimeText.subtitle_second}
                 </span>
