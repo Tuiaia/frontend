@@ -14,7 +14,7 @@ const Classificador = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/logo-tuiuiu.ico" />
             </Head>
-            <main>
+            <main className={'overflow-x-hidden'}>
                 <ClassificadorNoticias />
                 <Definicao />
                 <PolaridadeEmocional />
