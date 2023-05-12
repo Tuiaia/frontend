@@ -31,7 +31,8 @@ const Noticias = () => {
                 isLoading && <CapivaraLoading />
             }
             {
-                response && !isLoading? response.map((news, index) => <NoticiasCard key={index} news={news} />) :
+                response && !isLoading? (
+                    response.map((news, index) => <NoticiasCard key={index} news={news} />)) :
                     <div className={'flex justify-center items-center my-10'}>
                         <div className={'text-white text-6xl m-auto font-bold'}>Nenhuma notícia encontrada</div>
                     </div>
