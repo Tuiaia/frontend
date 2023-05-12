@@ -1,15 +1,22 @@
-const url = 'https://e5f7-2804-14c-7582-6577-9098-daf-d68a-d48a.ngrok-free.app/'
+const url = 'http://35.199.123.76/'
 
 export default async function classifyNews(news) {
     try{
-        const response = await fetch(`${url}`, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({news: news})
         })
-        return await response.json();
+        
+        const json = await response.json()
+        
+        if (json.detail) {
+            throw new Error(json.detail)
+        } else { 
+            return json
+        }
     } catch (error) {
         alert('Ocorreu um erro ao classificar a notícia')
         console.log(error)
