@@ -13,13 +13,13 @@ const Noticias = () => {
             link: 'https://www.infomoney.com.br/mercados/ibovespa-tem-leve-alta-com-exterior-positivo-e-antes-de-decisao-do-copom-veja-os-destaques/',
         },
     ]
-    const testes = [0, 1, 2, 3, 4, 5]
+    const testes = [{classification: 2}, {classification: 1}, {classification: 0}, {classification: 1}, {classification: 2}]
 
     return (
         <section className={'w-full bg-primary flex flex-col items-center p-10 min-h-screen'}>
             <div className={'flex items-center text-center p-20 w-[63%]'}>
                 <span className={'text-white text-6xl m-auto font-bold'}>{`${date} - ${date}`}</span>
-                <Image className={'ml-16'} src={'icone_filtro.svg'} alt={''} width={50} height={50}/>
+                <Image className={'ml-16 white-image'} src={'icone_filtro.svg'} alt={''} width={50} height={50}/>
             </div>
             {
                 testes? testes.map((noticia, index) => <NoticiasCard key={index} noticia={noticia} />) :
