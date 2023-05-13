@@ -8,36 +8,11 @@ const ClassificadorNoticias = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [response, setResponse] = useState(null);
 
-    const formatClassification = (classification) => {
-        switch (classification.classificacao) {
-            case 0:
-                return {
-                    ...classification,
-                    text: 'Negativa',
-                    icon: 'negative_icon.svg',
-                };
-            case 1:
-                return {
-                    ...classification,
-                    text: 'Neutra',
-                    icon: 'neutral_icon.svg',
-                };
-            case 2:
-                return {
-                    ...classification,
-                    text: 'Positiva',
-                    icon: 'positive_icon.svg',
-                };
-        }
-    }
-
-    const mockResponse = {
-        'classificacao': 0,
-        'probabilidade': '80%',
-        'insights': [
-            'Crise', 'Gravidade', 'Diminuiu', 'Segurança', 'Enfrenta'
-        ]
-    }
+    const matchingValueByClassification = [
+        {text: 'Negativa', subText: 'negativa', icon: 'negative_icon.svg'},
+        {text: 'Neutra', subText: 'neutra', icon: 'neutral_icon.svg'},
+        {text: 'Positiva', subText: 'positiva', icon: 'positive_icon.svg'},
+    ]
 
     const classify = async (text) => {
         setIsLoading(true);
@@ -85,24 +60,23 @@ const ClassificadorNoticias = () => {
                         <div className={'text-5xl font-bold text-center'}>Análise</div>
                         <div className={'text-3xl'}>
                             <div className={'my-4'}>
-                                <span>Confiabilidade: <span className={'font-bold ml-2'}>{response.probabilidade}</span></span>
+                                <span>Confiabilidade da classificação: <span className={'font-bold ml-2'}>{response.prediction_probatility}</span></span>
                             </div>
                             <div className={'my-4'}>
                                 <span>Essa notícia é classificada como: <span className={'capitalize font-bold ml-2'}>{response.text}</span></span>
                                 <Image className={'inline-block ml-2'} src={response.icon} alt={''} width={40} height={40} color={'white'}/>
                             </div>
-                            {response.insights && (
-                                <div className={'mt-4'}>
-                                    <div className={'text-2xl mb-4'}>
-                                        As palavras-chave que levaram o Tuiaia a classificar essa notícia como negativa foram:
-                                    </div>
-                                    {response.insights.map((insight, index) => (
-                                        <div key={index} className={'inline-block text-2xl m-2 bg-white w-fit p-3 rounded-full'}>
-                                            <span className={'font-bold text-black'}>{insight}</span>
-                                        </div>
-                                    ))}
+                            <div className={'mt-4'}>
+                                <div className={'text-2xl mb-4'}>
+                                    As palavras-chave que levaram o Tuiaia a classificar essa notícia como
+                                    <span className={'font-bold'}> {matchingValueByClassification[parseInt(response.prediction_index)].subText} </span> foram:
                                 </div>
-                            )}
+                                {response.influential_words.map((word, index) => (
+                                    <div key={index} className={'inline-block text-2xl m-2 bg-white w-fit p-3 rounded-full'}>
+                                        <span className={'font-bold text-black'}>{word}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </>

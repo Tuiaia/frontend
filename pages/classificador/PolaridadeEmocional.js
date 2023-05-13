@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const PolaridadeEmocional = () => {
     return (
-        <section className={'p-8 flex-col h-full p-10 rounded-3xl mt-8'}>
+        <section className={'p-8 flex-col h-full rounded-3xl mt-8'}>
                 <div className={'flex-1'}>
                     <div className={'text-secondary text-6xl font-bold mb-8 ml-12'}>{PolaridadeEmocionalText.title}</div>
                     <div className={'text-white text-3xl text-center justify-center items-center flex'}>
@@ -14,10 +14,10 @@ const PolaridadeEmocional = () => {
                                 <div className={'text-3xl'}>
                                     <Image className={'inline-block ml-2 positive-icon'} src={'/positive_icon.svg'} alt={''} width={300} height={300}/>
                                 </div>
-                                <div className={'text-third text-5xl'}>
+                                <div className={'mt-6 mb-6 text-third text-5xl'}>
                                     {PolaridadeEmocionalText.positive_title}<br/>
                                 </div>
-                                <div className={'max-w-[90%] mx-auto'}>
+                                <div className={'max-w-[90%] mx-auto text-justify'}>
                                     {PolaridadeEmocionalText.positive_description}
                                 </div>
                             </div>
@@ -25,10 +25,10 @@ const PolaridadeEmocional = () => {
                                 <div className={'text-3xl'}>
                                     <Image className={'inline-block ml-2 neutral-icon'} src={'/neutral_icon.svg'} alt={''} width={300} height={300}/>
                                 </div>
-                                <div className={'text-classify-neutral text-5xl'}>
+                                <div className={'mt-6 mb-6 text-classify-neutral text-5xl'}>
                                     {PolaridadeEmocionalText.neutral_title}<br/>
                                 </div>
-                                <div className={'max-w-[90%] mx-auto'}>
+                                <div className={'max-w-[90%] mx-auto text-justify'}>
                                     {PolaridadeEmocionalText.neutral_description}
                                 </div>
                             </div>
@@ -36,10 +36,10 @@ const PolaridadeEmocional = () => {
                                 <div className={'text-3xl'}>
                                     <Image className={'inline-block ml-2 negative-icon'} src={'/negative_icon.svg'} alt={''} width={300} height={300}/>
                                 </div>
-                                <div className={'text-classify-negative text-5xl'}>
+                                <div className={'mt-6 mb-6 text-classify-negative text-5xl'}>
                                     {PolaridadeEmocionalText.negative_title}<br/>
                                 </div>
-                                <div className={'max-w-[90%] mx-auto'}>
+                                <div className={'max-w-[90%] mx-auto text-justify'}>
                                     {PolaridadeEmocionalText.negative_description}
                                 </div>
                             </div>

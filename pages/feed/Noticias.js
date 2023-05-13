@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import NoticiasCard from '@/pages/feed/NoticiasCard';
+import { useEffect } from 'react';
 
 const Noticias = () => {
     const date = new Date().toLocaleDateString('pt-BR');
 
-    const mockNews = [
-        {
-            title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ',
-            fonte: 'Infomoney',
-            date: '20/04/2023',
-            image: '/arara_vermelha_feed.svg',
-            link: 'https://www.infomoney.com.br/mercados/ibovespa-tem-leve-alta-com-exterior-positivo-e-antes-de-decisao-do-copom-veja-os-destaques/',
-        },
-    ]
-    const testes = [{classification: 2}, {classification: 1}, {classification: 0}, {classification: 1}, {classification: 2}]
+    useEffect(() => {
+        const getNews = async () =>  {
+            setIsLoading(true);
+            const news = await getAllNewsClassifieds()
+            setResponse(news)
+            setIsLoading(false)
+        }
+        getNews()
+    }, [])
 
     return (
         <section className={'w-full bg-primary flex flex-col items-center p-10 min-h-screen'}>
