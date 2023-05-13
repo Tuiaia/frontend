@@ -4,8 +4,6 @@ import NoticiasCard from '@/pages/feed/NoticiasCard';
 import CapivaraLoading from '@/components/CapivaraLoading';
 import { getAllNewsClassifieds } from '@/api/feed/controller'
 
-
-
 const Noticias = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [response, setResponse] = useState(null);

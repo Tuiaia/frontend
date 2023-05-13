@@ -9,9 +9,9 @@ const ClassificadorNoticias = () => {
     const [response, setResponse] = useState(null);
 
     const matchingValueByClassification = [
-        {text: 'Negativa', icon: 'negative_icon.svg'},
-        {text: 'Neutra', icon: 'neutral_icon.svg'},
-        {text: 'Positiva', icon: 'positive_icon.svg'},
+        {text: 'Negativa', subText: 'negativa', icon: 'negative_icon.svg'},
+        {text: 'Neutra', subText: 'neutra', icon: 'neutral_icon.svg'},
+        {text: 'Positiva', subText: 'positiva', icon: 'positive_icon.svg'},
     ]
 
     const classify = async () => {
@@ -22,7 +22,7 @@ const ClassificadorNoticias = () => {
     }
 
     return (
-        <section className={'flex flex-col justify-center items-center max-w-4xl m-auto pt-10 pb-28 text-primary'}>
+        <section className={'flex flex-col justify-center items-center max-w-4xl m-auto pt-10 pb-28 text-primary h-[600px]'}>
             <h1 className={'text-7xl font-bold mb-8'}>Classificador de notícias</h1>
             <div className={'w-full relative'}>
                 <div className={'text-2xl'}>
@@ -60,7 +60,7 @@ const ClassificadorNoticias = () => {
                         <div className={'text-5xl font-bold text-center'}>Análise</div>
                         <div className={'text-3xl'}>
                             <div className={'my-4'}>
-                                <span>Confiabilidade: <span className={'font-bold ml-2'}>{response.prediction_probatility}</span></span>
+                                <span>Confiabilidade da classificação: <span className={'font-bold ml-2'}>{response.prediction_probatility}</span></span>
                             </div>
                             <div className={'my-4'}>
                                 <span>Essa notícia é classificada como: 
@@ -74,7 +74,8 @@ const ClassificadorNoticias = () => {
                             </div>
                             <div className={'mt-4'}>
                                 <div className={'text-2xl mb-4'}>
-                                    As palavras-chave que levaram o Tuiaia a classificar essa notícia como negativa foram:
+                                    As palavras-chave que levaram o Tuiaia a classificar essa notícia como
+                                    <span className={'font-bold'}> {matchingValueByClassification[parseInt(response.prediction_index)].subText} </span> foram:
                                 </div>
                                 {response.influential_words.map((word, index) => (
                                     <div key={index} className={'inline-block text-2xl m-2 bg-white w-fit p-3 rounded-full'}>

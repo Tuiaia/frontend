@@ -24,7 +24,7 @@ const itensHeader = [
 const Header = () => {
 
     return (
-        <header className={'bg-primary w-full flex items-center justify-center max-h-[104px] overflow-hidden'}>
+        <header className={'bg-primary w-full flex items-center justify-center max-h-[104px] overflow-hidden fixed top-0 z-30 border-secondary border-b-4'}>
             <nav>
                 <ul className={'flex justify-between items-center gap-8 h-full'}>
                     <li className={'mr-6'}>
