@@ -17,7 +17,7 @@ export default function NossoProjeto() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/logo-tuiuiu.ico" />
             </Head>
-            <main>
+            <main className={'overflow-hidden pt-[104px]'}>
                 <Introducao />
                 <Definicao />
                 <Desenvolvimento/>

@@ -4,7 +4,7 @@ import FeedDeNoticiaText from "@/data/text/feed/FeedDeNoticiaText";
 const Introducao = () => {
     return (
         <section className={'w-full overflow-hidden'}>
-            <div className={'relative'}>
+            <div className={'relative h-[600px]'}>
                 <Image className={'absolute -right-20 top-0 -z-10 '} src={'arara_vermelha_feed.svg'} alt={''} width={500} height={500}/>
                 <Image className={'absolute -left-28 -bottom-28 -z-10'} src="arara_azul_feed.svg" alt={''} width={500} height={500} />
                 <div className={'flex p-10 px-40 flex-col justify-center items-center text-center max-w-[70%] m-auto'}>

@@ -3,19 +3,19 @@ import { IntroducaoText } from '@/data/text/nossoProjeto';
 
 const Introducao = () => {
     return (
-        <section className={'bg-[url("/tuiaia_background.svg")] overflow-hidden w-full bg-no-repeat bg-cover flex'}>
-            <div className={'flex text-center justify-center items-center h-full m-auto'}>
-                <div className={'text-center'}>
-                    <div>
-                        <Image className={'mx-auto'} src="tuiaia.svg" alt={''} width={700} height={700} />
-                    </div>
-                    <div className={'text-p-bold text-3xl my-4'}>
+        <section className={'bg-white overflow-hidden w-full flex h-[600px]'}>
+            <div className={'flex flex-col text-center justify-center m-auto'}>
+                <div className={'bg-[url("/tuiaia_background.svg")] bg-no-repeat bg-cover mb-5 w-[95vw]'}>
+                    <Image className={'mx-auto -mt-20'} src={'tuiaia.svg'} alt={''} width={350} height={350} />
+                    <div className={'text-primary text-3xl -mt-4'}>
                         {IntroducaoText.paragraph_one}<br/><br/>
                     </div>
-                    <div className={'text-p-bold text-3xl my-4'}>
+                </div>
+                <div className={'text-center'}>                    
+                    <div className={'text-primary text-3xl my-2'}>
                         {IntroducaoText.paragraph_two}<br/><br/>
                     </div>
-                    <div className={'text-third text-5xl my-4'}>
+                    <div className={'text-third font-bold text-5xl my-2 mb-6'}>
                         {IntroducaoText.paragraph_three}
                         <span className={'text-secondary'}>
                             {IntroducaoText.paragraph_three_part_two}
