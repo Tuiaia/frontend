@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Image from 'next/image';
 import CapivaraLoading from '@/components/CapivaraLoading';
-import classifyNews from '@/api/Classify/ClassifyService';
+import { getNewsClassification } from '@/api/classify/controller'
 
 const ClassificadorNoticias = () => {
     const [text, setText] = useState('');
@@ -14,10 +14,10 @@ const ClassificadorNoticias = () => {
         {text: 'Positiva', subText: 'positiva', icon: 'positive_icon.svg'},
     ]
 
-    const classify = async (text) => {
+    const classify = async () => {
         setIsLoading(true);
-        //const classification = await classifyNews(text)
-        setResponse(formatClassification(mockResponse));
+        const classification = await getNewsClassification(text)
+        setResponse(classification);
         setIsLoading(false);
     }
 
@@ -63,8 +63,14 @@ const ClassificadorNoticias = () => {
                                 <span>Confiabilidade da classificação: <span className={'font-bold ml-2'}>{response.prediction_probatility}</span></span>
                             </div>
                             <div className={'my-4'}>
-                                <span>Essa notícia é classificada como: <span className={'capitalize font-bold ml-2'}>{response.text}</span></span>
-                                <Image className={'inline-block ml-2'} src={response.icon} alt={''} width={40} height={40} color={'white'}/>
+                                <span>Essa notícia é classificada como: 
+                                    <span className={'capitalize font-bold ml-2'}>
+                                        {matchingValueByClassification[parseInt(response.prediction_index)].text}
+                                    </span>
+                                </span>
+                                <Image className={'inline-block ml-2 white-image'} src={matchingValueByClassification[parseInt(response.prediction_index)].icon}
+                                    alt={''} width={40} height={40}
+                                />
                             </div>
                             <div className={'mt-4'}>
                                 <div className={'text-2xl mb-4'}>

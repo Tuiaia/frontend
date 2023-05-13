@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const bgColorByClassification = ['bg-classify-negative', 'bg-classify-neutral', 'bg-classify-positive']
-const iconLinkByClassification = ['negative_icon.svg', 'neutral_icon.svg', 'positive_icon.svg']
+const NoticiasCard = ({ news }) => {
+    const bgColorByClassification = ['bg-classify-negative', 'bg-classify-neutral', 'bg-classify-positive']
+    const iconLinkByClassification = ['negative_icon.svg', 'neutral_icon.svg', 'positive_icon.svg']
 
-const NoticiasCard = ({ noticia }) => {
     return (
         <>
             {news && (
@@ -20,7 +20,7 @@ const NoticiasCard = ({ noticia }) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className={'absolute bg-white rounded-xl -left-8 top-16 p-2'}>
+                        <div className={'absolute bg-white rounded-full -left-8 top-16 p-3'}>
                             <Image src={news.image} width={40} height={40}  alt={''}/>
                         </div>
                     </div>

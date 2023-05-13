@@ -1,6 +1,9 @@
 import NossoTime from '@/pages/nosso-projeto/NossoTime';
 import NossoMentor from '@/pages/nosso-projeto/NossoMentor';
 import Agradecimentos from '@/pages/nosso-projeto/Agradecimentos';
+import Introducao from '@/pages/nosso-projeto/Introducao';
+import Definicao from '@/pages/nosso-projeto/Definicao';
+import Desenvolvimento from '@/pages/nosso-projeto/Desenvolvimento';
 import Head from 'next/head';
 
 
@@ -15,6 +18,9 @@ export default function NossoProjeto() {
                 <link rel="icon" href="/logo-tuiuiu.ico" />
             </Head>
             <main>
+                <Introducao />
+                <Definicao />
+                <Desenvolvimento/>
                 <NossoTime />
                 <NossoMentor />
                 <Agradecimentos />

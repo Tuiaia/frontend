@@ -12,7 +12,8 @@ const NossoMentor = () => {
                         <Image className={'filter'} src={TiagoRomao.image} alt={'Tiago Romão'} width={500} height={500} />
                     </div>
                     <div className={'flex-1 max-w-5xl bg-white h-full p-10 rounded-3xl pb-36'}>
-                        <div className={'text-primary text-4xl font-bold mb-10 text-center'}>{TiagoRomao.name}</div>
+                        <div className={'text-p-bold text-4xl font-bold mb-4 text-center'}>{TiagoRomao.name}</div>
+                        <div className={'text-light text-2xl mb-8 text-center'}>{TiagoRomao.current_position}</div>
                         <div className={'text-primary text-2xl text-justify'}>{TiagoRomao.description}</div>
                     </div>
                 </div>

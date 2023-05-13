@@ -75,7 +75,7 @@ const PolaridadeEmocional = () => {
                     <div className={'text-secondary text-6xl font-bold mt-8 -mb-8 ml-12'}>{MagnitudeText.title}</div>
                     <div className={'text-3xl text-center flex'}>
                         <div className={'grid grid-cols-2 gap-10'}>
-                            <div className={'text-p-bold text-2xl font-bold mb-10'}>
+                            <div className={'text-p-bold text-2xl font-bold mb-8'}>
                                 <div>
                                     <Image className={'inline-block ml-2'} src={'/flor_de_ipe.svg'} alt={''} width={450} height={450}/>
                                 </div>
