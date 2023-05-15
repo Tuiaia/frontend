@@ -1,7 +1,10 @@
-const url = 'http://35.199.123.76/feed'
+let url = 'http://35.199.123.76/feed'
 
-export default async function findAllNews() {
+export default async function findAllNews(start_date, end_date) {
     try{
+        if (start_date && end_date) {
+            url = `${url}?startdate=${start_date}&enddate=${end_date}`
+        }
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -18,7 +21,6 @@ export default async function findAllNews() {
             return json
         }
     } catch (error) {
-        alert('Ocorreu um erro ao buscar as notícias')
-        console.log(error)
+        location.reload()
     }
 }
