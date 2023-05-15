@@ -3,10 +3,15 @@ import Head from 'next/head'
 import Introducao from './Introducao'
 import PieCharts from './PieCharts'
 import { getAllNewsClassifieds } from '@/api/feed/controller'
+import LineGraphics from './LineGraphics'
 
 
 const Dashboard = () => {
     const [news, setNews] = useState([])
+    const [date, setDate] = useState({
+        start: new Date().toLocaleDateString('pt-BR'), 
+        end: new Date().toLocaleDateString('pt-BR'),
+    })
     
     useEffect(() => {
         const getNews = async () =>  {
@@ -27,7 +32,12 @@ const Dashboard = () => {
             </Head>
             <main className={'overflow-hidden pt-[104px]'}>
                 <Introducao newsLength={news? news.length : 0} />
-                {news?.length > 0 && <PieCharts news={news} />}
+                {news?.length > 0 && (
+                    <>
+                        <PieCharts news={news} />
+                        <LineGraphics news={news} date={date} setDate={setDate}/>
+                    </>
+                )}
             </main>
         </>
     )

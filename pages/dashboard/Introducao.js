@@ -8,7 +8,7 @@ const Introducao = ({ newsLength }) => {
         <div className={'text-5xl flex items-center justify-center flex-col'}>
             <div className={'my-10'}>Notícias classificadas</div>
             <div id={'flipBox'} className={'mb-10'}>
-                <FlipNumbers height={100} width={100} color='white' background='#043475' numberStyle={{ fontSize: 50 }} play numbers={newsLength + ''} />
+                <FlipNumbers height={70} width={70} color='white' background='#043475' numberStyle={{ fontSize: 40 }} play numbers={newsLength + ''} />
             </div>
         </div>
     </section>
