@@ -1,8 +1,4 @@
-import { useEffect } from "react"
-
 const ClassificacaoCard = ({classification, identifier}) => {
-    useEffect(()=>console.log(classification, identifier), [])
-
     const titlesByClassification = ['Polaridade Emocional', 'Impacto Temporal', 'Magnitude']
     const textsByClassification = [
         [
