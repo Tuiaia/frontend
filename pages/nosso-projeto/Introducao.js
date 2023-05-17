@@ -3,10 +3,10 @@ import { IntroducaoText } from '@/data/text/nossoProjeto';
 
 const Introducao = () => {
     return (
-        <section className={'bg-white overflow-hidden w-full flex h-[600px]'}>
+        <section className={'bg-white overflow-hidden w-full flex h-[700px]'}>
             <div className={'flex flex-col text-center justify-center m-auto'}>
                 <div className={'bg-[url("/tuiaia_background.svg")] bg-no-repeat bg-cover mb-5 w-[95vw]'}>
-                    <Image className={'mx-auto -mt-20'} src={'tuiaia.svg'} alt={''} width={350} height={350} />
+                    <Image className={'mx-auto -mt-20'} src={'tuiaia.svg'} alt={''} width={500} height={500} />
                     <div className={'text-primary text-3xl -mt-4'}>
                         {IntroducaoText.paragraph_one}<br/><br/>
                     </div>
