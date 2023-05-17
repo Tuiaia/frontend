@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import NoticiasCard from '@/pages/feed/NoticiasCard';
 import { getAllNewsClassifieds } from '@/api/feed/controller'
 import Input from '@mui/joy/Input';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 
 const Noticias = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -10,18 +10,26 @@ const Noticias = () => {
     const [newsInterval, setNewsInterval] = useState([0, 5])
     const [newsPerPage, setNewsPerPage] = useState(5)
     const [newsToShow, setNewsToShow] = useState([])
-    const date = new Date().toLocaleDateString('pt-BR');
+    const [date, setDate] = useState({
+        start: new Date().toLocaleDateString('pt-BR'), 
+        end: new Date().toLocaleDateString('pt-BR'),
+    })
+    const [selected, setSelected] = useState(0)
 
     useEffect(() => {
+        handleDate()
         const getNews = async () =>  {
             setIsLoading(true);
-            const response = await getAllNewsClassifieds()
-            setNews(response)
-            setNewsToShow(response.slice(newsInterval[0], newsInterval[1]))
-            setIsLoading(false);
+            try {
+                const response = await getAllNewsClassifieds(date.start, date.end)
+                setNews(response)
+                setNewsToShow(response.slice(newsInterval[0], newsInterval[1]))
+            } finally {
+                setIsLoading(false);    
+            }
         }
         getNews()
-    }, [])
+    }, [selected])
 
     useEffect(() => {
         setNewsToShow(news.slice(newsInterval[0], newsInterval[1]))
@@ -38,6 +46,33 @@ const Noticias = () => {
             }
         }
     }, [newsPerPage])
+
+    function handleDate() {
+        switch (selected) {
+            case 0:
+                setDate({
+                    start: new Date().toLocaleDateString('pt-BR'),
+                    end: new Date().toLocaleDateString('pt-BR')
+                })
+                break
+            case 1:
+                const dateToGetWeekOld = new Date()
+                dateToGetWeekOld.setDate(dateToGetWeekOld.getDate() - 7)
+                setDate({
+                    start: dateToGetWeekOld.toLocaleDateString('pt-BR'),
+                    end: new Date().toLocaleDateString('pt-BR')
+                })
+                break
+            case 2:
+                const dateToGetMoth = new Date()
+                dateToGetMoth.setMonth(dateToGetMoth.getMonth() - 1)
+                setDate({
+                    start: dateToGetMoth.toLocaleDateString('pt-BR'),
+                    end: new Date().toLocaleDateString('pt-BR')
+                })
+                break
+        }
+    }
 
     function handleValuePerPage(e) {
         const value = parseInt(e.target.value)
@@ -90,21 +125,52 @@ const Noticias = () => {
 
     return (
         <section id={'news'} className={'w-full bg-primary flex flex-col items-center p-10'}>
-            <div className={'flex items-center text-center p-20 w-[63%]'}>
-                <span className={'text-white text-6xl m-auto font-bold'}>{`${date} - ${date}`}</span>
-                <Image className={'ml-16 white-image'} src={'icone_filtro.svg'} alt={''} width={50} height={50}/>
+            <div className={'flex items-center text-center p-20 w-[80%]'}>
+                <span className={'text-white text-6xl m-auto font-bold'}>{date.start !== date.end? `${date.start} - ${date.end}` : 'Hoje'}</span>
+                <div className={'flex text-white text-3xl font-bold items-center ml-10'}>
+                    <div className={'mr-3'}>Período: </div>
+                    <FormControl style={{ minWidth: '20%' }}>
+                        <InputLabel></InputLabel>
+                        <Select
+                            sx={{
+                                color: "white",
+                                '.MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'rgba(228, 219, 233, 0.25)',
+                                },
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'rgba(228, 219, 233, 0.25)',
+                                },
+                                '&:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'rgba(228, 219, 233, 0.25)',
+                                },
+                                '.MuiSvgIcon-root ': {
+                                    fill: "white !important",
+                                    color: 'white'
+                                }
+                            }}
+                            value={selected}
+                            label=""
+                            onChange={(e) => setSelected(e.target.value)}
+                        >
+                            <MenuItem value={0}>Hoje</MenuItem>
+                            <MenuItem value={1}>7 dias atrás</MenuItem>
+                            <MenuItem value={2}>1 mês atrás</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                </div>
             </div>
             {
                 isLoading && <div className={'text-6xl text-white font-bold h-[60vh] pt-[30vh]'}>Carregando notícias...</div>
             }
             {
                 news?.length === 0 && !isLoading &&
-                        <div className={'flex justify-center items-center my-10'}>
+                        <div className={'flex justify-center items-center my-10 py-32'}>
                             <div className={'text-white text-6xl m-auto font-bold'}>Nenhuma notícia encontrada</div>
                         </div> 
             }
             {
-                newsToShow && !isLoading && (
+                newsToShow?.length > 0 && !isLoading && (
                     <>
                         {newsToShow.map((news, index) => <NoticiasCard key={index} news={news} />)}
                         <div className={'mt-5 w-full flex justify-around items-center'}>
