@@ -20,15 +20,15 @@ const NoticiasCard = ({ news }) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className={'absolute bg-white rounded-full -left-8 top-16 p-3'}>
+                        <div className={'absolute bg-white rounded-2xl -left-8 top-16 p-2'}>
                             <Image src={news.image} width={40} height={40}  alt={''}/>
                         </div>
                     </div>
-                    <div className={'flex items-center justify-center px-20 rounded-r-3xl ' + bgColorByClassification[parseInt(news.classification.prediction_index)]}>
+                    <div className={'flex items-center justify-center px-20 rounded-r-3xl ' + bgColorByClassification[parseInt(news.classification.sentiment)]}>
                         <div className={'flex justify-center items-center mx-auto my-auto'}>
                             <Image 
                                 className={'white-image'}
-                                src={iconLinkByClassification[parseInt(news.classification.prediction_index)]}
+                                src={iconLinkByClassification[parseInt(news.classification.sentiment)]}
                                 alt={''}
                                 width={100}
                                 height={100}

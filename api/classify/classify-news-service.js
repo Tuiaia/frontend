@@ -19,6 +19,5 @@ export default async function classifyNews(news) {
         }
     } catch (error) {
         alert('Ocorreu um erro ao classificar a notícia')
-        console.log(error)
     }
 }
