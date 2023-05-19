@@ -12,7 +12,9 @@ const ClassificadorNoticias = () => {
     const classify = async () => {
         setIsLoading(true);
         const classification = await getNewsClassification(text)
-        setResponse(classification);
+        if (classification) {
+            setResponse(classification);    
+        }
         setIsLoading(false);
     }
 
@@ -55,7 +57,9 @@ const ClassificadorNoticias = () => {
             </section>
             {response && (
                 <div className={'flex w-[90vw] gap-5 m-auto'}>
-                    {response.map((classification, index) => <ClassificacaoCard classification={classification} key={index} identifier={index} />)}
+                    {response.map((classification, index) => classification? 
+                    <ClassificacaoCard classification={classification} key={index} identifier={index} /> : null
+                    )}
                 </div>
                 )
             }
