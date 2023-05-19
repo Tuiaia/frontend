@@ -1,13 +1,12 @@
 const Hallyson = {
     name: 'Hallyson Nobres Fernandes',
     graduation: 'Sistemas de Informação',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-        'Ut tincidunt, risus nec vehicula mollis, turpis nisi auctor leo, ' +
-        'at lobortis tortor nulla sed elit. Suspendisse potenti. Sed varius' +
-        ' tellus in sem ultricies fringilla ac at felis. Aenean eros nunc,' +
-        ' gravida eu finibus sed, placerat in dolor. Etiam in quam hendrerit, ' +
-        'rutrum lorem sit amet, aliquam arcu. Cras malesuada pretium augue.' +
-        ' Phasellus tincidunt lacus a lacus aliquam, ac finibus augue lobortis.',
+    description: 'Sou um desenvolvedor full-stack pleno na empresa Kosmo Studio, especializado no uso de tecnologias de ponta, como React Native e NestJS.' + 
+        ' Além disso, possuo sólidos conhecimentos em React, NextJS, Java (Spring Boot), VueJS e linguagens SQL.' +
+        ' Durante o projeto, tive a honra de liderar o desenvolvimento de nossa aplicação visual de destaque.' +
+        ' Nesse projeto, busquei utilizar as stacks mais recentes e inovadoras, garantindo um produto de alta qualidade.' +
+        ' Essa experiência proporcionou um aprendizado significativo e me permitiu aprimorar ainda mais minhas habilidades técnicas.' +
+        ' Sempre busco estar atualizado sobre as tendências do setor e estou constantemente buscando oportunidades para expandir meu conhecimento e habilidades.',
     image: '/hallyson.svg'
 }
 

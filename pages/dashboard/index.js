@@ -12,14 +12,23 @@ const Dashboard = () => {
         start: new Date().toLocaleDateString('pt-BR'), 
         end: new Date().toLocaleDateString('pt-BR'),
     })
+    const [error, setError] = useState(true)
     
     useEffect(() => {
         const getNews = async () =>  {
-            const response = await getAllNewsClassifieds('12/04/2023', '14/05/2023')
-            setNews(response)
+            try {
+                const response = await getAllNewsClassifieds('12/04/2023', '14/05/2023')
+                if(response === 'DOMException: The user aborted a request.')
+                    throw new Error('DOMException: The user aborted a request.')
+                setNews(response)
+                setError(null)
+            } catch (e) {
+                setError(e)
+            }
         }
         getNews()
-        setInterval(getNews, 5000)
+        if (!error)
+            setInterval(getNews, 15000)
     }, [])
     
     return (
