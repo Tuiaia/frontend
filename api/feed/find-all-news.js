@@ -29,7 +29,6 @@ export default async function findAllNews(start_date, end_date) {
             return json
         }
     } catch (error) {
-        console.log(error)
         if (error.name === 'AbortError') {
             alert('Ocorreu um erro ao tentar buscar as notícias')
             return []
