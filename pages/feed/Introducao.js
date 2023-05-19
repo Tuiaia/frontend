@@ -14,24 +14,24 @@ const Introducao = () => {
                         <div className={'text-white text-2xl text-center justify-center items-center flex'}>
                             <div className={'grid grid-cols-3 gap-10'}>
                                 <div className={'text-p-bold font-bold mb-10'}>
-                                    <div>
-                                        <Image className={'inline-block ml-2'} src={'/calendario_feed.svg'} alt={''} width={350} height={350}/>
+                                    <div className={'mb-10'}>
+                                        <Image className={'ml-2'} src={'/calendario_feed.svg'} alt={''} width={350} height={350}/>
                                     </div>
                                     <div className={'feed-icons'}>
                                         {FeedDeNoticiaText.advantage1}
                                     </div>
                                 </div>
                                 <div className={'text-p-bold font-bold mb-10'}>
-                                    <div className={'text-3xl'}>
-                                        <Image className={'inline-block ml-2'} src={'/livro_feed.svg'} alt={''} width={350} height={350}/>
+                                    <div className={'text-3xl mb-10'}>
+                                        <Image className={'ml-2'} src={'/livro_feed.svg'} alt={''} width={350} height={350}/>
                                     </div>
                                     <div className={'feed-icons'}>
                                         {FeedDeNoticiaText.advantage2}
                                     </div>
                                 </div>
                                 <div className={'text-p-bold font-bold mb-10'}>
-                                    <div>
-                                        <Image className={'inline-block ml-2'} src={'dinheiro_feed.svg'} alt={''} width={350} height={350}/>
+                                    <div className={'mb-10'}>
+                                        <Image className={'ml-2'} src={'dinheiro_feed.svg'} alt={''} width={350} height={350}/>
                                     </div>
                                     <div className={'feed-icons'}>
                                         {FeedDeNoticiaText.advantage3}

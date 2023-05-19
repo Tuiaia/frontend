@@ -17,11 +17,11 @@ const Noticias = () => {
     const [selected, setSelected] = useState(0)
 
     useEffect(() => {
-        handleDate()
         const getNews = async () =>  {
+            const dates = handleDate()
             setIsLoading(true);
             try {
-                const response = await getAllNewsClassifieds(date.start, date.end)
+                const response = await getAllNewsClassifieds(dates[0], dates[1])
                 setNews(response)
                 setNewsToShow(response.slice(newsInterval[0], newsInterval[1]))
             } finally {
@@ -40,7 +40,7 @@ const Noticias = () => {
             setNewsInterval([newsInterval[0], newsPerPage])
         } else if (newsPerPage < newsInterval[1]) {
             if (newsPerPage <= 5 || newsInterval[1] - newsPerPage === 5){
-                setNewsInterval([0, 5])    
+                setNewsInterval([0, 5])
             } else {
                 setNewsInterval([newsInterval[0], newsInterval[1] - newsPerPage])
             }
@@ -48,30 +48,27 @@ const Noticias = () => {
     }, [newsPerPage])
 
     function handleDate() {
-        switch (selected) {
-            case 0:
-                setDate({
-                    start: new Date().toLocaleDateString('pt-BR'),
-                    end: new Date().toLocaleDateString('pt-BR')
-                })
-                break
-            case 1:
-                const dateToGetWeekOld = new Date()
-                dateToGetWeekOld.setDate(dateToGetWeekOld.getDate() - 7)
-                setDate({
-                    start: dateToGetWeekOld.toLocaleDateString('pt-BR'),
-                    end: new Date().toLocaleDateString('pt-BR')
-                })
-                break
-            case 2:
-                const dateToGetMoth = new Date()
-                dateToGetMoth.setMonth(dateToGetMoth.getMonth() - 1)
-                setDate({
-                    start: dateToGetMoth.toLocaleDateString('pt-BR'),
-                    end: new Date().toLocaleDateString('pt-BR')
-                })
-                break
+        let start_date
+        let end_date
+
+        if (selected === 0) {
+            start_date = new Date().toLocaleDateString('pt-BR')
+            end_date = new Date().toLocaleDateString('pt-BR')
+        } 
+        else if (selected === 1) {    
+            const dateToGetWeekOld = new Date()
+            dateToGetWeekOld.setDate(dateToGetWeekOld.getDate() - 7)
+            start_date = dateToGetWeekOld.toLocaleDateString('pt-BR')
+            end_date = new Date().toLocaleDateString('pt-BR')
+        } 
+        else if (selected === 2) {    
+            const dateToGetMoth = new Date()
+            dateToGetMoth.setMonth(dateToGetMoth.getMonth() - 1)
+            start_date = dateToGetMoth.toLocaleDateString('pt-BR')
+            end_date = new Date().toLocaleDateString('pt-BR')
         }
+        setDate({ start: start_date, end: end_date })
+        return [start_date, end_date]
     }
 
     function handleValuePerPage(e) {
@@ -126,7 +123,7 @@ const Noticias = () => {
     return (
         <section id={'news'} className={'w-full bg-primary flex flex-col items-center p-10'}>
             <div className={'flex items-center text-center p-20 w-[80%]'}>
-                <span className={'text-white text-6xl m-auto font-bold'}>{date.start !== date.end? `${date.start} - ${date.end}` : 'Hoje'}</span>
+                <span className={'text-white text-6xl m-auto font-bold'}>{date.start !== date.end? `${date.start} - Hoje` : 'Hoje'}</span>
                 <div className={'flex text-white text-3xl font-bold items-center ml-10'}>
                     <div className={'mr-3'}>Período: </div>
                     <FormControl style={{ minWidth: '20%' }}>
@@ -157,7 +154,6 @@ const Noticias = () => {
                             <MenuItem value={2}>1 mês atrás</MenuItem>
                         </Select>
                     </FormControl>
-
                 </div>
             </div>
             {

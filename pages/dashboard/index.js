@@ -8,16 +8,15 @@ import LineGraphics from './LineGraphics'
 
 const Dashboard = () => {
     const [news, setNews] = useState([])
-    const [date, setDate] = useState({
-        start: new Date().toLocaleDateString('pt-BR'), 
-        end: new Date().toLocaleDateString('pt-BR'),
-    })
     const [error, setError] = useState(true)
     
     useEffect(() => {
         const getNews = async () =>  {
             try {
-                const response = await getAllNewsClassifieds('12/04/2023', '14/05/2023')
+                const today = new Date()
+                let start_date = new Date()
+                start_date.setDate(today.getDate() - 7)
+                const response = await getAllNewsClassifieds(start_date.toLocaleDateString('pt-BR'), today.toLocaleDateString('pt-BR'))
                 if(response === 'DOMException: The user aborted a request.')
                     throw new Error('DOMException: The user aborted a request.')
                 setNews(response)
@@ -40,11 +39,11 @@ const Dashboard = () => {
                 <link rel="icon" href="/logo-tuiuiu.ico" />
             </Head>
             <main className={'overflow-hidden pt-[104px]'}>
-                <Introducao newsLength={news? news.length : 0} />
+                <Introducao news={news} />
                 {news?.length > 0 && (
                     <>
                         <PieCharts news={news} />
-                        <LineGraphics news={news} date={date} setDate={setDate}/>
+                        <LineGraphics news={news}/>
                     </>
                 )}
             </main>

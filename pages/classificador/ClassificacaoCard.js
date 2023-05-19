@@ -1,5 +1,5 @@
 const ClassificacaoCard = ({classification, identifier}) => {
-    const titlesByClassification = ['Polaridade Emocional', 'Impacto Temporal', 'Magnitude']
+    const titlesByClassification = ['Polaridade Emocional', 'Magnitude', 'Impacto Temporal']
     const textsByClassification = [
         [
             {text: 'Negativa', subText: ' negativa'},
@@ -7,14 +7,14 @@ const ClassificacaoCard = ({classification, identifier}) => {
             {text: 'Positiva', subText: ' positiva'},
         ],
         [
-            {text: 'Curto prazo', subText: ' de curto prazo'},
-            {text: 'Indefinida', subText: ' indefinida'},
-            {text: 'Longo prazo', subText: ' de longo prazo'},
-        ],
-        [
             {text: 'Baixo impacto', subText: ' de baixo impacto'},
             {text: 'Indefinida', subText: ' indefinida'},
             {text: 'Grande impacto', subText: ' de grande impacto'},
+        ],
+        [
+            {text: 'Curto prazo', subText: ' de curto prazo'},
+            {text: 'Indefinida', subText: ' indefinida'},
+            {text: 'Longo prazo', subText: ' de longo prazo'},
         ]
     ]
 
