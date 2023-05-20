@@ -4,13 +4,13 @@ import Introducao from './Introducao'
 import PieCharts from './PieCharts'
 import { getAllNewsClassifieds } from '@/api/feed/controller'
 import LineGraphics from './LineGraphics'
-import WordCloud from "@/pages/dashboard/WordCloud";
+import WordCloudComponent from './WordCloud'
 
 
 const Dashboard = () => {
     const [news, setNews] = useState([])
     const [error, setError] = useState(true)
-
+    
     useEffect(() => {
         const getNews = async () =>  {
             try {
@@ -22,7 +22,6 @@ const Dashboard = () => {
                     throw new Error('DOMException: The user aborted a request.')
                 setNews(response)
                 setError(null)
-                console.log(response.length, 'busca')
             } catch (e) {
                 setError(e)
             }
@@ -33,7 +32,7 @@ const Dashboard = () => {
             setInterval(getNews, 5000)
         }
     }, [])
-
+    
     return (
         <>
             <Head>
@@ -48,7 +47,7 @@ const Dashboard = () => {
                     <>
                         <PieCharts news={news} />
                         <LineGraphics news={news}/>
-                        <WordCloud />
+                        <WordCloudComponent />
                     </>
                 )}
             </main>

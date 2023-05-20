@@ -14,6 +14,7 @@ const LineGraphics = ({ news }) => {
     const [employeeSelected, setEmployeeSelected] = useState('')
     const [sentimentGraphic, setSentimentGraphic] = useState([]);
     const [employeeGraphic, setEmployeeGraphic] = useState([])
+    const [companyGraphic, setCompanyGraphic] = useState([])
     const [possibleDates, setPossibleDates] = useState([])
     const today = new Date()
     const styleButtonByActivation = ['bg-third text-white', 'bg-white text-primary']
@@ -27,10 +28,20 @@ const LineGraphics = ({ news }) => {
         title: 'Notícias Classificadas nos últimos 7 dias',
         legend: { position: 'bottom' },
         vAxis: { viewWindow: { min: 0 } },
+        animation: {
+            startup: true,
+            easing: 'linear',
+            duration: 1500,
+        },
     };
     const employeeOptions = {
         title: 'Preço das ações nos últimos 7 dias',
         legend: { position: 'bottom' },
+        animation: {
+            startup: true,
+            easing: 'linear',
+            duration: 1500,
+        },
     };
     
 
@@ -39,17 +50,13 @@ const LineGraphics = ({ news }) => {
         setPossibleDates(initialValues[0])
         setSentimentGraphic(initialValues[1])
         setEmployeeGraphic(initialValues[2])
-        console.log(initialValues)
+        setCompanyGraphic(initialValues[2])
     }, [])
 
 
     useEffect(() => {
         if (news && possibleDates.length > 0) {
-            //const newsFiltered = handleFilter()
-            console.log('1')
             formatNewsToSentimentGraphic(news)
-            console.log('2')
-            console.log(news.length, sentimentGraphic)
         }
     }, [news, possibleDates])
 
@@ -59,7 +66,6 @@ const LineGraphics = ({ news }) => {
             try {
                 const response = await findCotationsByName(employeeSelected, possibleDates[0], possibleDates[possibleDates.length-1])
                 setEmployeeData(response['Time Series (Daily)'])
-                console.log(response['Time Series (Daily)'])
                 setInputData((current) => ({ ...current, status: 'sent' }));
             } catch (error) {
                 setInputData((current) => ({ ...current, status: 'failure' }));
@@ -71,9 +77,10 @@ const LineGraphics = ({ news }) => {
     }, [employeeSelected])
 
     useEffect(() => {
-        if (employeeData)
+        if (employeeData && possibleDates?.length > 0){
             formatValuesToEmployeeGraphic()
-    }, [employeeData])
+        }
+    }, [employeeData, possibleDates])
 
     function getInitialGraphicValues() {
         const dates = []
@@ -103,67 +110,35 @@ const LineGraphics = ({ news }) => {
     }
 
     function formatValuesToEmployeeGraphic() {
-        console.log('entrou Employee', employeeGraphic)
-        Object.keys(employeeData).map((date) => {
-            const day = possibleDates.findIndex((possibleDate) => possibleDate.slice(0,2) === date.slice(-2))
-            if (day !== -1) {
-                employeeGraphic[day+1][1] = employeeData[date]['4. close']
-            }
-        })
-        console.log('agr', employeeGraphic)
+        const dataGraphic = employeeGraphic
+        if(employeeData) {
+            Object.keys(employeeData).map((date) => {
+                const day = possibleDates.findIndex((possibleDate) => possibleDate.slice(0,2) === date.slice(-2))
+                if (day !== -1) {
+                    dataGraphic[day+1][1] = Number(employeeData[date]['4. close'])
+                }
+            })
+            dataGraphic[1][1] = dataGraphic[2][1]
+            dataGraphic[7][1] = dataGraphic[6][1]
+            setCompanyGraphic(dataGraphic)
+            handleSubmit(true)
+        }
     }
 
-    // function handleFilter() {
-    //     const newsFilteredByterm = filterNewsToShowByTerm()
-    //     return filterNewsToShowByIntensity(newsFilteredByterm)
-    // }
-
-    // function filterNewsToShowByTerm() {
-    //     if (!filters[0] && !filters[1]) {
-    //         return news
-    //     }
-
-    //     if (filters[0] && !filters[1]) {
-    //         return news?.filter((data) => data.classification.term === 2)
-    //     }
-
-    //     if (!filters[0] && filters[1]) {
-    //         return news?.filter((data) => data.classification.term === 0)
-    //     }
-
-    //     if (filters[0] && filters[1]) {
-    //         return news?.filter((data) => data.classification.term === 2 || data.classification.term === 0)
-    //     }
-    // }
-
-    // function filterNewsToShowByIntensity(newsFilteredByterm) {
-    //     if (!filters[0] && !filters[1]) {
-    //         return newsFilteredByterm
-    //     }
-
-    //     if (filters[0] && !filters[1]) {
-    //         return newsFilteredByterm?.filter((data) => data.classification.intensity === 2)
-    //     }
-
-    //     if (!filters[0] && filters[1]) {
-    //         return newsFilteredByterm?.filter((data) => data.classification.intensity === 0)
-    //     }
-
-    //     if (filters[0] && filters[1]) {
-    //         return newsFilteredByterm?.filter((data) => data.classification.intensity === 2 || data.classification.intensity === 0)
-    //     }
-    // }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (flag) => {
         setInputData((current) => ({ ...current, status: 'loading' }));
         try {
             const response = await findEmployeeOptions(inputData.text)
-            console.log(response.bestMatches[0]['1. symbol'])
             setOptions(response.bestMatches)
             setInputData((current) => ({ ...current, status: 'sent' }));
+            if (flag) {
+                setInputData((current) => ({ text: '', status: 'sent' }));
+            }
         } catch (error) {
-            setInputData((current) => ({ ...current, status: 'failure' }));
+            if (flag)
+                setInputData((current) => ({ ...current, status: 'sent' }));
+            else
+                setInputData((current) => ({ ...current, status: 'failure' }));
         }
     };
 
@@ -176,17 +151,9 @@ const LineGraphics = ({ news }) => {
         <div className={'max-w-5xl text-5xl m-auto text-center w-full text-secondary font-bold'}>
             Compare as notícias do mercado financeiro com a sua carteira de ações
         </div>
-        <div className={'flex justify-center mt-32'}>
-            <div className={'flex justify-center flex-col flex-1 gap-10'}>
-                <div className={'flex'}>
-                    {filtersButton.map((filterButton, index) => {
-                        return <button key={index}
-                            className={filters[index]? styleButtonByActivation[0] : styleButtonByActivation[1] + ' font-bold rounded-full p-2 px-4 text-xl hover:bg-p-bold hover:shadow-[0px_8px_15px_rgba(0,0,0,0.25)] hover:-translate-y-1 active:shadow-none active:translate-y-0'}
-                            onClick={() => {filters[index] = !filters[index]}}
-                        >{filterButton.text}</button>
-                    })}
-                </div>
-                <Chart 
+        <div className={'flex justify-center items-center mt-32 gap-20'}>
+            <div className={'flex justify-center flex-col mt-28'}>
+                <Chart
                     width={'500px'}
                     height={'500px'}
                     chartType={'LineChart'}
@@ -195,9 +162,9 @@ const LineGraphics = ({ news }) => {
                 />
             </div>
             
-            <div className={'flex justify-center flex-col flex-1 gap-10'}>
+            <div className={'flex justify-center flex-col gap-10'}>
                 <div className={'flex'}>
-                    <form onSubmit={handleSubmit} id="demo">
+                    <form id="demo">
                         <FormControl>
                             <Input
                                 sx={{ '--Input-decoratorChildHeight': '45px' }}
@@ -211,7 +178,7 @@ const LineGraphics = ({ news }) => {
                                         variant="solid"
                                         color="primary"
                                         loading={inputData.status === 'loading'}
-                                        type="submit"
+                                        onClick={handleSubmit}
                                         sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
                                     >
                                         Buscar Cotações
@@ -235,23 +202,25 @@ const LineGraphics = ({ news }) => {
                             )}
                         </FormControl>
                     </form>
-                    {options.length > 0 && <div className={'text-white'}>
-                        <div className={''}>Selecione uma das ações: </div>
-                        <div>
-                            {options.map((option, index) => {
-                                return <button key={index} onClick={() => selectOption(option['1. symbol'])}>{option['1. symbol']}</button>
-                            })}
+                </div>
+                <div className={'flex gap-10'}>
+                    <Chart
+                        width={'500px'}
+                        height={'500px'}
+                        chartType={'LineChart'}
+                        data={companyGraphic}
+                        options={employeeOptions}
+                    />
+                    {options?.length > 0 && <div className={'text-white max-w-[20%]'}>
+                            <div className={'text-3xl'}>Selecione uma das ações: </div>
+                            <div>
+                                {options.map((option, index) => {
+                                    return <button className={'m-3 bg-white text-primary p-2 rounded-xl'} key={index} onClick={() => selectOption(option['1. symbol'])}>{option['1. symbol']}</button>
+                                })}
+                            </div>
                         </div>
-                    </div>
                     }
                 </div>
-                <Chart
-                    width={'500px'}
-                    height={'500px'}
-                    chartType={'LineChart'}
-                    data={employeeGraphic}
-                    options={employeeOptions}
-                />
             </div>
         </div>
     </section>

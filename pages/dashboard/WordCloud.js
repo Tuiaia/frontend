@@ -10,8 +10,8 @@ const WordCloudComponent = () => {
     const [fade, setFade] = useState(false);
 
     useEffect(() => {
-        const startDate = encodeURIComponent('15/05/2023');
-        const endDate = encodeURIComponent('19/05/2023');
+        const startDate = encodeURIComponent('14/05/2023');
+        const endDate = encodeURIComponent('20/05/2023');
         const url = `http://35.199.123.76/wordcloud?startdate=${startDate}&enddate=${endDate}`;
         const barUrl = `http://35.199.123.76/barwordcloud?startdate=${startDate}&enddate=${endDate}`;
 
@@ -66,59 +66,53 @@ const WordCloudComponent = () => {
     }
 
     return (
-        <div>
-            <div className='max-w-5xl text-5xl m-auto text-center w-full text-secondary font-bold'>
-                Assuntos em destaque
-            </div>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '20px',
-                backgroundColor: '#48B091',
-                padding: '20px',
-            }}
+            <div className={'flex flex-col items-center justify-center bg-third gap-10 p-10 py-20'}
             >
-                <div style={{ textAlign: 'center' }}>
-                    {imgSrc && (
-                        <img
-                            className={`word-cloud-image ${fade ? 'fade-out' : 'fade-in'}`}
-                            src={imgSrc}
-                            style={{ borderRadius: '15px', width: '600px', height: '600px' }}
-                            alt="WordCloud"
-                        />
-                    )}
+                <div className='mb-16 text-5xl m-auto text-center w-full text-white font-bold'>
+                    <div>Assuntos em destaque</div>
+                    <div className={'text-3xl text-primary mt-5'}>Últimos 7 dias</div>
                 </div>
-                <div style={{ borderRadius: '15px', overflow: 'hidden' }}>
-                    <Chart
-                        width={'800px'}
-                        height={'600px'}
-                        chartType="BarChart"
-                        data={barData}
-                        options={{
-                            legend: { position: 'none' },
-                            hAxis: {
-                                title: 'Quantidade de citações',
-                                titleTextStyle: { fontSize: 18, italic: false },
-                                textStyle: { fontSize: 16 },
-                            },
-                            vAxis: {
-                                title: 'Palavras citadas',
-                                titleTextStyle: { fontSize: 18, italic: false },
-                                textStyle: { fontSize: 16 },
-                            },
-                            colors: ['#003475'],
-                            animation: {
-                                startup: true,
-                                easing: 'linear',
-                                duration: 1500,
-                            },
-                        }}
-                    />
+                <div className={'flex justify-center items-center gap-20'}>
+                    <div style={{ textAlign: 'center' }}>
+                        {imgSrc && (
+                            <img
+                                className={`word-cloud-image ${fade ? 'fade-out' : 'fade-in'}`}
+                                src={imgSrc}
+                                style={{ borderRadius: '15px', width: '600px', height: '600px' }}
+                                alt="WordCloud"
+                            />
+                        )}
+                    </div>
+                    <div style={{ borderRadius: '15px', overflow: 'hidden' }}>
+                        <Chart
+                            width={'800px'}
+                            height={'600px'}
+                            chartType="BarChart"
+                            data={barData}
+                            options={{
+                                title: '10 palavras mais citadas',
+                                legend: { position: 'none' },
+                                hAxis: {
+                                    title: 'Quantidade de citações',
+                                    titleTextStyle: { fontSize: 18, italic: false },
+                                    textStyle: { fontSize: 16 },
+                                },
+                                vAxis: {
+                                    title: 'Palavras citadas',
+                                    titleTextStyle: { fontSize: 18, italic: false },
+                                    textStyle: { fontSize: 16 },
+                                },
+                                colors: ['#003475'],
+                                animation: {
+                                    startup: true,
+                                    easing: 'linear',
+                                    duration: 1500,
+                                },
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
     );
 };
 
