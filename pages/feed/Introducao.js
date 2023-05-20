@@ -10,7 +10,7 @@ const Introducao = () => {
                 <div className={'flex p-10 px-40 flex-col justify-center items-center text-center max-w-[70%] m-auto'}>
                     <div className={'flex-1 h-full p-10 rounded-3xl pb-31'}>
                         <div className={'text-p-bold text-6xl font-bold mb-10'}>{FeedDeNoticiaText.title}</div>
-                        <div className={'feed-title text-secondary text-4xl font-bold max-w-none'}>{FeedDeNoticiaText.description}</div>
+                        <div className={'feed-title text-secondary text-3xl font-bold max-w-none'}>{FeedDeNoticiaText.description}</div>
                         <div className={'text-white text-2xl text-center justify-center items-center flex'}>
                             <div className={'grid grid-cols-3 gap-10'}>
                                 <div className={'text-p-bold font-bold mb-10'}>

@@ -4,6 +4,7 @@ import Introducao from './Introducao'
 import PieCharts from './PieCharts'
 import { getAllNewsClassifieds } from '@/api/feed/controller'
 import LineGraphics from './LineGraphics'
+import WordCloudComponent from './WordCloud'
 
 
 const Dashboard = () => {
@@ -26,8 +27,10 @@ const Dashboard = () => {
             }
         }
         getNews()
-        if (!error)
-            setInterval(getNews, 15000)
+        if (!error) {
+            console.log('errou')
+            setInterval(getNews, 5000)
+        }
     }, [])
     
     return (
@@ -44,6 +47,7 @@ const Dashboard = () => {
                     <>
                         <PieCharts news={news} />
                         <LineGraphics news={news}/>
+                        <WordCloudComponent />
                     </>
                 )}
             </main>

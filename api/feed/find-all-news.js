@@ -33,7 +33,7 @@ export default async function findAllNews(start_date, end_date) {
             alert('Ocorreu um erro ao tentar buscar as notícias')
             return []
         } else {
-            location.reload()
+            
         }
     }
 }
