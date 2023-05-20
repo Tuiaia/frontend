@@ -1,13 +1,7 @@
 const Rodrigo = {
     name: 'Rodrigo Stuqui Monzani',
     graduation: 'Engenharia de Computação',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
-        'Ut tincidunt, risus nec vehicula mollis, turpis nisi auctor leo, ' +
-        'at lobortis tortor nulla sed elit. Suspendisse potenti. Sed varius tellus' +
-        ' in sem ultricies fringilla ac at felis. Aenean eros nunc, gravida ' +
-        'eu finibus sed, placerat in dolor. Etiam in quam hendrerit, ' +
-        'rutrum lorem sit amet, aliquam arcu. Cras malesuada pretium augue. ' +
-        'Phasellus tincidunt lacus a lacus aliquam, ac finibus augue lobortis.',
+    description: 'Sou estudante de Engenharia de Computação e faço parte do laboratório de Inteligência Artificial, onde tive a oportunidade de desenvolver meus primeiros projetos de aprendizado de máquina. Além disso, atuo como desenvolvedor backend e, neste projeto específico, dediquei-me à integração da API. Utilizei a linguagem Python devido aos meus conhecimentos prévios, uma vez que ela é versátil e possui uma ampla gama de bibliotecas e frameworks dedicados. Participar desse projeto foi uma grande honra para mim, mesmo sendo um desafio significativo, pois proporcionou um aprendizado valioso.',
     image: '/rodrigo.svg'
 }
 

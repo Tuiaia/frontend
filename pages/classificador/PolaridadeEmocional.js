@@ -28,7 +28,7 @@ const PolaridadeEmocional = () => {
                                 <div className={'mt-6 mb-6 text-classify-neutral text-5xl'}>
                                     {PolaridadeEmocionalText.neutral_title}<br/>
                                 </div>
-                                <div className={'max-w-[90%] mx-auto text-justify'}>
+                                <div className={'max-w-[90%] mx-auto justify-center'}>
                                     {PolaridadeEmocionalText.neutral_description}
                                 </div>
                             </div>
@@ -39,7 +39,7 @@ const PolaridadeEmocional = () => {
                                 <div className={'mt-6 mb-6 text-classify-negative text-5xl'}>
                                     {PolaridadeEmocionalText.negative_title}<br/>
                                 </div>
-                                <div className={'max-w-[90%] mx-auto text-justify'}>
+                                <div className={'max-w-[90%] mx-auto justify-center'}>
                                     {PolaridadeEmocionalText.negative_description}
                                 </div>
                             </div>
@@ -77,9 +77,9 @@ const PolaridadeEmocional = () => {
                         <div className={'grid grid-cols-2 gap-10'}>
                             <div className={'text-p-bold text-2xl font-bold mb-8'}>
                                 <div>
-                                    <Image className={'inline-block ml-2'} src={'/flor_de_ipe.svg'} alt={''} width={450} height={450}/>
+                                    <Image className={'inline-block ml-2 mt-20'} src={'/flor_de_ipe.svg'} alt={''} width={450} height={450}/>
                                 </div>
-                                <div className={'mb-8 text-5xl'}>
+                                <div className={'mb-8 -mt-20 text-5xl'}>
                                     {MagnitudeText.low_impact_title}<br/>
                                 </div>
                                 <div className={'mt-35 mb-8 max-w-[70%] mx-auto'}>

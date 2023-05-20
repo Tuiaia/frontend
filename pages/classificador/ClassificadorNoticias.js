@@ -21,7 +21,7 @@ const ClassificadorNoticias = () => {
     return (
         <>
             <section className={'flex flex-col justify-center items-center max-w-4xl m-auto pt-10 text-primary min-h-[600px]'}>
-                <h1 className={'text-7xl font-bold mb-8'}>Classificador de notícias</h1>
+                <h1 className={'text-6xl font-bold mb-8'}>Classificador de notícias</h1>
                 <div className={'w-full relative'}>
                     <div className={'text-2xl'}>
                         Digite ou cole o texto da notícia sobre o mercado financeiro no campo abaixo:
