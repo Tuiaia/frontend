@@ -26,6 +26,7 @@ const LineGraphics = ({ news }) => {
     const sentimentOptions = {
         title: 'Notícias Classificadas nos últimos 7 dias',
         legend: { position: 'bottom' },
+        vAxis: { viewWindow: { min: 0 } },
     };
     const employeeOptions = {
         title: 'Preço das ações nos últimos 7 dias',
