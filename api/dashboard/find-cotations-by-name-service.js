@@ -1,4 +1,4 @@
-const API_URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=full&apikey='
+const API_URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&apikey='
 const apiKey = 'J2XCAJ3FZB9VJ54M'
 // `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&apikey=${apiKey}`;
 
