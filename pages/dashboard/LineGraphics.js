@@ -1,6 +1,6 @@
 import Chart from "react-google-charts"
 import { useEffect, useState } from "react"
-import { findCotationsByName } from "@/api/dashboard/controller";
+import { findCotationsByName, findEmployeeOptions } from "@/api/dashboard/controller";
 import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
@@ -10,113 +10,166 @@ const LineGraphics = ({ news }) => {
     const [filters, setFilters] = useState([false, false, false, false])
     const [inputData, setInputData] = useState({text: '', status: 'initial'})
     const [employeeData, setEmployeeData] = useState(null)
+    const [options, setOptions] = useState([])
+    const [employeeSelected, setEmployeeSelected] = useState('')
+    const [sentimentGraphic, setSentimentGraphic] = useState([]);
+    const [employeeGraphic, setEmployeeGraphic] = useState([])
+    const [possibleDates, setPossibleDates] = useState([])
     const today = new Date()
-    const possibleDates = getPossibleDates()
     const styleButtonByActivation = ['bg-third text-white', 'bg-white text-primary']
     const filtersButton = [
-        { text: 'Longo prazo', click: handleFilter() },
+        { text: 'Longo prazo' },
         { text: 'Curto prazo' },
         { text: 'Alto impacto' },
         { text: 'Baixo impacto' }
     ]
     const sentimentOptions = {
         title: 'Notícias Classificadas nos últimos 7 dias',
-        curveType: 'function',
         legend: { position: 'bottom' },
     };
-    const [data, setData] = useState([
-        ['Dias', 'Positivos', 'Negativos'],
-        ['1', 0, 0],
-        ['2', 0, 0],
-        ['3', 0, 0],
-        ['4', 0, 0],
-        ['5', 0, 0],
-        ['6', 0, 0],
-        ['7', 0, 0],
-    ]);
+    const employeeOptions = {
+        title: 'Preço das ações nos últimos 7 dias',
+        legend: { position: 'bottom' },
+    };
+    
 
     useEffect(() => {
-        if (news) {
-            const newsFiltered = handleFilter()
-            formatNewsToDataGraphic(news)
-            console.log(news.length, data)
-        }
-    }, [news])
+        const initialValues = getInitialGraphicValues()
+        setPossibleDates(initialValues[0])
+        setSentimentGraphic(initialValues[1])
+        setEmployeeGraphic(initialValues[2])
+        console.log(initialValues)
+    }, [])
 
-    function getPossibleDates() {
+
+    useEffect(() => {
+        if (news && possibleDates.length > 0) {
+            //const newsFiltered = handleFilter()
+            console.log('1')
+            formatNewsToSentimentGraphic(news)
+            console.log('2')
+            console.log(news.length, sentimentGraphic)
+        }
+    }, [news, possibleDates])
+
+    useEffect(() => {
+        async function getEmployeeData() {
+            setInputData((current) => ({ ...current, status: 'loading' }));
+            try {
+                const response = await findCotationsByName(employeeSelected, possibleDates[0], possibleDates[possibleDates.length-1])
+                setEmployeeData(response['Time Series (Daily)'])
+                console.log(response['Time Series (Daily)'])
+                setInputData((current) => ({ ...current, status: 'sent' }));
+            } catch (error) {
+                setInputData((current) => ({ ...current, status: 'failure' }));
+            }
+        }
+        if (employeeSelected) {
+            getEmployeeData()
+        }
+    }, [employeeSelected])
+
+    useEffect(() => {
+        if (employeeData)
+            formatValuesToEmployeeGraphic()
+    }, [employeeData])
+
+    function getInitialGraphicValues() {
         const dates = []
+        const datesToSentimentGraphics = [['Dias', 'Positivos', 'Negativos']]
+        const datesToEmployeeGraphics = [['Dias', 'Preço da Ação']]
         let possibleDate = new Date()
-        for (let day = 7; day >= 1; day--) {
+        for (let day = 6; day >= 0; day--) {
             possibleDate.setDate(today.getDate() - day)
             dates.push(possibleDate.toLocaleDateString('pt-BR'))
+            datesToSentimentGraphics.push([possibleDate.toLocaleDateString('pt-BR').slice(0,5), 0, 0])
+            datesToEmployeeGraphics.push([possibleDate.toLocaleDateString('pt-BR').slice(0,5), 0])
         }
-        return dates
+        return [dates, datesToSentimentGraphics, datesToEmployeeGraphics]
     }
 
-    function formatNewsToDataGraphic(newsFiltered) {
+    function formatNewsToSentimentGraphic(newsFiltered) {
         newsFiltered.map((item) => {
             const classification = parseInt(item.classification.sentiment)
             if (classification !== 1) {
-                const day = possibleDates.findIndex((possibleDate) => possibleDate === item.date) + 1
+                const day = possibleDates.findIndex((possibleDate) => possibleDate === item.date) - 1
                 if (day !== 0) {
                     const classificationPosition = classification === 0? classification + 2 : classification - 1
-                    data[day][classificationPosition]++
+                    sentimentGraphic[day+1][classificationPosition]++
                 }
             }
         })
     }
 
-    function handleFilter() {
-        const newsFilteredByterm = filterNewsToShowByTerm()
-        return filterNewsToShowByIntensity(newsFilteredByterm)
+    function formatValuesToEmployeeGraphic() {
+        console.log('entrou Employee', employeeGraphic)
+        Object.keys(employeeData).map((date) => {
+            const day = possibleDates.findIndex((possibleDate) => possibleDate.slice(0,2) === date.slice(-2))
+            if (day !== -1) {
+                employeeGraphic[day+1][1] = employeeData[date]['4. close']
+            }
+        })
+        console.log('agr', employeeGraphic)
     }
 
-    function filterNewsToShowByTerm() {
-        if (!filters[0] && !filters[1]) {
-            return news
-        }
+    // function handleFilter() {
+    //     const newsFilteredByterm = filterNewsToShowByTerm()
+    //     return filterNewsToShowByIntensity(newsFilteredByterm)
+    // }
 
-        if (filters[0] && !filters[1]) {
-            return news?.filter((data) => data.classification.term === 2)
-        }
+    // function filterNewsToShowByTerm() {
+    //     if (!filters[0] && !filters[1]) {
+    //         return news
+    //     }
 
-        if (!filters[0] && filters[1]) {
-            return news?.filter((data) => data.classification.term === 0)
-        }
+    //     if (filters[0] && !filters[1]) {
+    //         return news?.filter((data) => data.classification.term === 2)
+    //     }
 
-        if (filters[0] && filters[1]) {
-            return news?.filter((data) => data.classification.term === 2 || data.classification.term === 0)
-        }
-    }
+    //     if (!filters[0] && filters[1]) {
+    //         return news?.filter((data) => data.classification.term === 0)
+    //     }
 
-    function filterNewsToShowByIntensity(newsFilteredByterm) {
-        if (!filters[0] && !filters[1]) {
-            return newsFilteredByterm
-        }
+    //     if (filters[0] && filters[1]) {
+    //         return news?.filter((data) => data.classification.term === 2 || data.classification.term === 0)
+    //     }
+    // }
 
-        if (filters[0] && !filters[1]) {
-            return newsFilteredByterm?.filter((data) => data.classification.intensity === 2)
-        }
+    // function filterNewsToShowByIntensity(newsFilteredByterm) {
+    //     if (!filters[0] && !filters[1]) {
+    //         return newsFilteredByterm
+    //     }
 
-        if (!filters[0] && filters[1]) {
-            return newsFilteredByterm?.filter((data) => data.classification.intensity === 0)
-        }
+    //     if (filters[0] && !filters[1]) {
+    //         return newsFilteredByterm?.filter((data) => data.classification.intensity === 2)
+    //     }
 
-        if (filters[0] && filters[1]) {
-            return newsFilteredByterm?.filter((data) => data.classification.intensity === 2 || data.classification.intensity === 0)
-        }
-    }
+    //     if (!filters[0] && filters[1]) {
+    //         return newsFilteredByterm?.filter((data) => data.classification.intensity === 0)
+    //     }
+
+    //     if (filters[0] && filters[1]) {
+    //         return newsFilteredByterm?.filter((data) => data.classification.intensity === 2 || data.classification.intensity === 0)
+    //     }
+    // }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setInputData((current) => ({ ...current, status: 'loading' }));
         try {
-            const response = await findCotationsByName(inputData.text, possibleDates[0], possibleDates[possibleDates.length-1])
-            setEmployeeData(response)
+            const response = await findEmployeeOptions(inputData.text)
+            console.log(response.bestMatches[0]['1. symbol'])
+            setOptions(response.bestMatches)
+            setInputData((current) => ({ ...current, status: 'sent' }));
         } catch (error) {
             setInputData((current) => ({ ...current, status: 'failure' }));
         }
     };
+
+    function selectOption(option) {
+        setEmployeeSelected(option);
+        setOptions([])
+    }
 
     return <section className={'bg-primary p-20 w-full min-h-screen'}>
         <div className={'max-w-5xl text-5xl m-auto text-center w-full text-secondary font-bold'}>
@@ -136,7 +189,7 @@ const LineGraphics = ({ news }) => {
                     width={'500px'}
                     height={'500px'}
                     chartType={'LineChart'}
-                    data={data}
+                    data={sentimentGraphic}
                     options={sentimentOptions}
                 />
             </div>
@@ -148,6 +201,7 @@ const LineGraphics = ({ news }) => {
                             <Input
                                 sx={{ '--Input-decoratorChildHeight': '45px' }}
                                 placeholder={'Empresa ou código da ação'}
+                                autoComplete={'off'}
                                 value={inputData.text}
                                 onChange={(event) => setInputData({ text: event.target.value, status: 'initial' })}
                                 error={inputData.status === 'failure'}
@@ -180,13 +234,22 @@ const LineGraphics = ({ news }) => {
                             )}
                         </FormControl>
                     </form>
+                    {options.length > 0 && <div className={'text-white'}>
+                        <div className={''}>Selecione uma das ações: </div>
+                        <div>
+                            {options.map((option, index) => {
+                                return <button key={index} onClick={() => selectOption(option['1. symbol'])}>{option['1. symbol']}</button>
+                            })}
+                        </div>
+                    </div>
+                    }
                 </div>
-                <Chart 
+                <Chart
                     width={'500px'}
                     height={'500px'}
                     chartType={'LineChart'}
-                    data={data}
-                    options={sentimentOptions}
+                    data={employeeGraphic}
+                    options={employeeOptions}
                 />
             </div>
         </div>

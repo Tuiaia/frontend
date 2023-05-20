@@ -21,13 +21,16 @@ const Dashboard = () => {
                     throw new Error('DOMException: The user aborted a request.')
                 setNews(response)
                 setError(null)
+                console.log(response.length, 'busca')
             } catch (e) {
                 setError(e)
             }
         }
         getNews()
-        if (!error)
-            setInterval(getNews, 15000)
+        if (!error) {
+            console.log('errou')
+            setInterval(getNews, 5000)
+        }
     }, [])
     
     return (

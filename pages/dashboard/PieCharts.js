@@ -20,7 +20,7 @@ const PieCharts = ({ news }) => {
         }
     }, [news])
 
-    return <section className={'flex justify-center items-center w-[75%] m-auto gap-4 text-3xl text-secondary font-bold'}>
+    return <section className={'flex justify-center items-center w-[100%] m-auto gap-4 text-4xl text-secondary font-bold'}>
         <div className={'flex flex-col justify-center items-center flex-1'}>
             <div>
                 Polaridade Emocional
@@ -30,7 +30,7 @@ const PieCharts = ({ news }) => {
                 data={emotionData}
                 options={{colors: ['#EB615C', '#c0bfbb', '#48B091']}}
                 width={'100%'}
-                height={'400px'}
+                height={'500px'}
                 className={'flex-1'}
             />
         </div>
@@ -43,7 +43,7 @@ const PieCharts = ({ news }) => {
                 data={impactData}
                 options={{colors: ['#EB615C', '#c0bfbb', '#48B091']}}
                 width={'100%'}
-                height={'400px'}
+                height={'500px'}
                 className={'flex-1'}
             />
         </div>
@@ -56,7 +56,7 @@ const PieCharts = ({ news }) => {
                 data={magnitudeData}
                 options={{colors: ['#EB615C', '#c0bfbb', '#48B091']}}
                 width={'100%'}
-                height={'400px'}
+                height={'500px'}
                 className={'flex-1'}
             />
         </div>
