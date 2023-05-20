@@ -9,6 +9,7 @@ import Button from '@mui/joy/Button';
 const LineGraphics = ({ news }) => {
     const [filters, setFilters] = useState([false, false, false, false])
     const [inputData, setInputData] = useState({text: '', status: 'initial'})
+    const [employeeData, setEmployeeData] = useState(null)
     const today = new Date()
     const possibleDates = getPossibleDates()
     const styleButtonByActivation = ['bg-third text-white', 'bg-white text-primary']
@@ -110,12 +111,8 @@ const LineGraphics = ({ news }) => {
         event.preventDefault();
         setInputData((current) => ({ ...current, status: 'loading' }));
         try {
-            console.log(inputData.text, possibleDates[0], possibleDates[possibleDates.length-1])
             const response = await findCotationsByName(inputData.text, possibleDates[0], possibleDates[possibleDates.length-1])
-            console.log(response);
-            setTimeout(() => {
-                setInputData({ text: inputData.text, status: 'sent' });
-            }, 1500);
+            setEmployeeData(response)
         } catch (error) {
             setInputData((current) => ({ ...current, status: 'failure' }));
         }
@@ -126,11 +123,11 @@ const LineGraphics = ({ news }) => {
             Compare as notícias do mercado financeiro com a sua carteira de ações
         </div>
         <div className={'flex justify-center mt-32'}>
-            <div className={'flex justify-center flex-col flex-1'}>
+            <div className={'flex justify-center flex-col flex-1 gap-10'}>
                 <div className={'flex'}>
                     {filtersButton.map((filterButton, index) => {
                         return <button key={index}
-                            className={filters[index]? styleButtonByActivation[0] : styleButtonByActivation[1] + ' font-bold rounded-full p-2 px-4 text-2xl hover:bg-p-bold hover:shadow-[0px_8px_15px_rgba(0,0,0,0.25)] hover:-translate-y-1 active:shadow-none active:translate-y-0'}
+                            className={filters[index]? styleButtonByActivation[0] : styleButtonByActivation[1] + ' font-bold rounded-full p-2 px-4 text-xl hover:bg-p-bold hover:shadow-[0px_8px_15px_rgba(0,0,0,0.25)] hover:-translate-y-1 active:shadow-none active:translate-y-0'}
                             onClick={() => {filters[index] = !filters[index]}}
                         >{filterButton.text}</button>
                     })}
@@ -144,8 +141,8 @@ const LineGraphics = ({ news }) => {
                 />
             </div>
             
-            <div className={'flex justify-center flex-col flex-1'}>
-                <div className={'flex justify-center'}>
+            <div className={'flex justify-center flex-col flex-1 gap-10'}>
+                <div className={'flex'}>
                     <form onSubmit={handleSubmit} id="demo">
                         <FormControl>
                             <Input
@@ -184,6 +181,13 @@ const LineGraphics = ({ news }) => {
                         </FormControl>
                     </form>
                 </div>
+                <Chart 
+                    width={'500px'}
+                    height={'500px'}
+                    chartType={'LineChart'}
+                    data={data}
+                    options={sentimentOptions}
+                />
             </div>
         </div>
     </section>
