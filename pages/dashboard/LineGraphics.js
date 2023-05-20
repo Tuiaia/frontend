@@ -23,6 +23,7 @@ const LineGraphics = ({ news }) => {
         title: 'Notícias Classificadas nos últimos 7 dias',
         curveType: 'function',
         legend: { position: 'bottom' },
+        vAxis: { viewWindow: { min: 0 } },
     };
     const [data, setData] = useState([
         ['Dias', 'Positivos', 'Negativos'],
